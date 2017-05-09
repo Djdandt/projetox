@@ -41,21 +41,21 @@ import javax.servlet.http.HttpSession;
  * @author fernando.tsuda
  */
 @WebFilter(filterName = "AutorizacaoFilter",
-	servletNames = {"EstoqueServlet", "EntradaServlet"},
-	urlPatterns = {"/protegido/*"}
-	)
+        servletNames = {"EstoqueServlet", "EntradaServlet", "ClienteServlet", "CadastrarClienteServlet"},
+        urlPatterns = {"/protegido/*"}
+)
 public class AutorizacaoFilter implements Filter {
-  
+
     /**
      *
      * @param filterConfig
      * @throws ServletException
      */
     @Override
-  public void init(FilterConfig filterConfig) throws ServletException {
-    
-  }
-  
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
     /**
      *
      * @param request
@@ -65,60 +65,64 @@ public class AutorizacaoFilter implements Filter {
      * @throws ServletException
      */
     @Override
-  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-    // 1) Verificar se usuário está autenticado
-    // 1a) Cast dos objetos request e response
-    HttpServletRequest httpRequest = (HttpServletRequest) request;
-    HttpServletResponse httpResponse = (HttpServletResponse) response;
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        // 1) Verificar se usuário está autenticado
+        // 1a) Cast dos objetos request e response
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
 
-    // 2) Tenta obter a sessao do usuario
-    HttpSession sessao = httpRequest.getSession();
-    UsuarioSistema usuario
-	    = (UsuarioSistema) sessao.getAttribute("usuario");
+        // 2) Tenta obter a sessao do usuario
+        HttpSession sessao = httpRequest.getSession();
+        UsuarioSistema usuario
+                = (UsuarioSistema) sessao.getAttribute("usuario");
 
-    // Usuario nulo significa que não está logado
-    // Redireciona para tela de login
-    if (usuario == null) {
-      httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
-      return;
+        // Usuario nulo significa que não está logado
+        // Redireciona para tela de login
+        if (usuario == null) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+            return;
+        }
+
+        // 3) Usuario está logado, então verifica se tem permissão
+        // para acessar a página.
+        if (verificarAcesso(usuario, httpRequest, httpResponse)) {
+            // Acesso a página está liberado.
+            chain.doFilter(request, response);
+        } else {
+            // Usuário não tem permissão de acesso a página.
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/erroNaoAutorizado.jsp");
+        }
     }
 
-    // 3) Usuario está logado, então verifica se tem permissão
-    // para acessar a página.
-    if (verificarAcesso(usuario, httpRequest, httpResponse)) {
-      // Acesso a página está liberado.
-      chain.doFilter(request, response);
-    } else {
-      // Usuário não tem permissão de acesso a página.
-      httpResponse.sendRedirect(httpRequest.getContextPath() + "/erroNaoAutorizado.jsp");
+    private static boolean verificarAcesso(UsuarioSistema usuario,
+            HttpServletRequest request, HttpServletResponse response) {
+        String paginaAcessada = request.getRequestURI();
+        String pagina = paginaAcessada.replace(request.getContextPath(), "");
+
+        if (pagina.endsWith("entrada")
+                && usuario.temPapel("ADMIN")) {
+            return true;
+        } else if (pagina.endsWith("estoque")
+                && usuario.temPapel("BASICO")) {
+            return true;
+
+        } else if (pagina.endsWith("cliente")
+                && usuario.temPapel("BASICO")) {
+            return true;
+
+        } else if (pagina.endsWith("cadastrarCliente")
+                && usuario.temPapel("ADMIN")) {
+            return true;
+        }
+        return false;
     }
-  }
-  
-  private static boolean verificarAcesso(UsuarioSistema usuario,
-	  HttpServletRequest request, HttpServletResponse response) {
-    String paginaAcessada = request.getRequestURI();
-    String pagina = paginaAcessada.replace(request.getContextPath(), "");
-    
-    if (pagina.endsWith("entrada")
-	    && usuario.temPapel("ADMIN")) {
-      return true;
-    } else if (pagina.endsWith("estoque")
-	    && usuario.temPapel("BASICO")) {
-      return true;
-      
-    } else if (pagina.endsWith("cliente")
-            && usuario.temPapel("BASICO")) {
-        return true;
-    }
-    return false;
-  }
-  
+
     /**
      *
      */
     @Override
-  public void destroy() {
-    
-  }
-  
+    public void destroy() {
+
+    }
+
 }

@@ -78,7 +78,7 @@ public class CadastrarClienteServlet extends HttpServlet {
       
       HttpSession sessao = request.getSession();
       sessao.setAttribute("novoCliente", novo);
-      response.sendRedirect("resultado.jsp");
+      response.sendRedirect("clienteCadastrado.jsp");
     } else {
       // Tem erro no preenchimento dos dados.
       // Reapresenta o formulário para o usuário indicando os erros.
