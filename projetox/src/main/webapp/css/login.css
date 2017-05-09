@@ -1,0 +1,104 @@
+.oi{
+    border-right:2px solid #c0c0c0;
+    border-left:2px solid #c0c0c0;
+    border-top:2px solid #c0c0c0;
+    border-bottom: 2px solid #c0c0c0;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 500px;
+    height: 500px;
+    background: rgba(253,241,211,1);
+}
+
+.logo {
+    width: 213px;
+    height: 36px;
+    background: url('url.png') no-repeat;
+    margin: 30px auto;
+}
+
+.login-block {
+    width: 320px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    border-top: 5px solid #ff656c;
+    margin: 0 auto;
+}
+
+.login-block h1 {
+    text-align: center;
+    color: #000;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.login-block input {
+    width: 100%;
+    height: 42px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-family: Montserrat;
+    padding: 0 20px 0 50px;
+    outline: none;
+}
+
+.login-block input#txtusuario {
+    background: #fff url('../imagens/username-icon.png') 20px top no-repeat;
+    background-size: 16px 80px;
+    font-size: 15px;
+}
+
+.login-block input#txtusuario:focus {
+    background: #fff url('../imagens/username-icon.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input#txtsenha {
+    background: #fff url('../imagens/password-icon.png') 20px top no-repeat;
+    background-size: 16px 80px;
+    font-size: 15px;
+}
+
+.login-block input#txtsenha:focus {
+    background: #fff url('../imagens/password-icon.png') 20px bottom no-repeat;
+    background-size: 16px 80px;
+}
+
+.login-block input:active, .login-block input:focus {
+    border: 1px solid #ff656c;
+}
+
+#btnEntrar {
+    width: 100%;
+    height: 40px;
+    background: #ff656c;
+    box-sizing: border-box;
+    border-radius: 15px;
+    border: 1px solid #e15960;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-family: Montserrat;
+    outline: none;
+    cursor: pointer;
+}
+
+.login-block button:hover {
+    background: #ff7b81;
+}
+
+body {
+    background-image: url("../imagens/asd.png");
+}
