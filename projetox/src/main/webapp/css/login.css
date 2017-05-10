@@ -1,0 +1,43 @@
+.menu{
+list-style:none; 
+float:left;
+left: -40px;
+background-color: rgba(255, 251, 242, 0);
+font-size: 15px;
+position: fixed;
+}
+
+.menu li{
+position:relative; 
+float:left; 
+width: 150px;
+}
+
+.menu li a{
+color:gray;
+text-decoration:none;
+padding:5px 10px;
+display:block;
+}
+
+.menu li a:hover{
+background:black; 
+color:whitesmoke;
+}
+
+.menu li ul{
+position:absolute; 
+top:27.5px; 
+left:0;
+background-color:rgba(255, 251, 242, 0);
+display:none;
+}	
+
+.menu li:hover ul, .menu li.over ul{
+display:block;
+}
+
+.menu li ul li{
+display:block; 
+width:150px;
+}
