@@ -35,11 +35,11 @@
                     </ul>   
                     </li>
 		<li><a href="#">Relatórios</a></li>
-	  		<li><a href="#">Cadastrar</a>
+	  		<li><a href="#">Cadastro</a>
 	         	<ul>
-	                  <li><a href="cadastrarCliente.jsp">Cadastrar Cliente</a></li>
-	                  <li><a href="#">Cadastrar Funcionário</a></li>
-                          <li><a href="entrada.jsp">Cadastrar Produto</a></li>                    
+	                  <li><a href="cadastrarCliente.jsp">Cliente</a></li>
+	                  <li><a href="cadastrarFuncionario.jsp">Funcionário</a></li>
+                          <li><a href="entrada.jsp">Produto</a></li>                    
 	       		</ul>
 			</li>
 		<li><a href="#">Estoque</a></li>                
