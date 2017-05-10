@@ -29,9 +29,9 @@
 		<li><a href="#"><b/>Home</a></li>
                 <li><a href="#">Consultar</a>
                     <ul>
-	                  <li><a href="#">Consultar Cliente</a></li>
-                          <li><a href="#">Consultar Produto</a></li>
-                          <li><a href="#">Consultar Funcionário</a></li>
+	                  <li><a href="cliente.jsp">Cliente</a></li>
+                          <li><a href="estoque.jsp">Produto</a></li>
+                          <li><a href="#">Funcionário</a></li>
                     </ul>   
                     </li>
 		<li><a href="#">Relatórios</a></li>

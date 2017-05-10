@@ -137,55 +137,8 @@
                                                 <input name="cidade" placeholder="Cidade" class="form-control"  type="text">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>  
 
-
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Endereço</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                                <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">CEP</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                                <input name="cep" placeholder="Cep" class="form-control"  type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Número da Casa</label>  
-                                        <div class="col-md-4 inputGroupContainer">
-                                            <div class="input-group">
-                                                <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                                <input name="numCasa" placeholder="Número da casa" class="form-control"  type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="col-md-4 control-label">Gênero</label>
-                                        <div class="col-md-4">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="genero" value="no" /> Masculino 
-                                                </label><label>
-                                                    <input type="radio" name="genero" value="yes" /> Feminino
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </table>
-                            </div>
                             <!-- Success message -->
                             <!--<div class="alert alert-success" role="alert" id="success_message">Sucesso <i class="glyphicon glyphicon-thumbs-up"></i> Cadastro Realizado com Sucesso !!.</div>-->
 
