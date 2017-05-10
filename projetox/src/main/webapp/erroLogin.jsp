@@ -13,6 +13,6 @@
   </head>
   <body>
     <h1>Usuário ou senha inválido</h1>
-    <a href="login">Voltar para tela de login</a>
+    <a href="home.jsp">Voltar para tela de login</a>
   </body>
 </html>

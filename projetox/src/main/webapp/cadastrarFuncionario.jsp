@@ -1,7 +1,7 @@
 <%-- 
-    Document   : cadastrarCliente
-    Created on : 02/05/2017, 20:53:42
-    Author     : danilo.kwatanabe
+    Document   : cadastrarFuncionario
+    Created on : 09/05/2017, 21:58:01
+    Author     : bruno.flima4
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -23,7 +23,7 @@
         <script src="js/index.js"></script>
 
 
-        <title>Cadastro de Clientes</title>
+        <title>Cadastro de Funcionários</title>
     </head>
     <body>
 
@@ -34,7 +34,7 @@
 
                     <center>
                         <div class="register-block">
-                            <h2 style="margin-bottom: 25px"> Cadastro de Clientes </h2>
+                            <h2 style="margin-bottom: 25px"> Cadastro de Funcionários </h2>
 
                             <!-- Form Name -->
 
@@ -137,52 +137,6 @@
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
                                             <input name="cidade" placeholder="Cidade" class="form-control"  type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Endereço</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                            <input name="endereco" placeholder="Endereço" class="form-control" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">CEP</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                            <input name="cep" placeholder="Cep" class="form-control"  type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Número da Casa</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                            <input name="numCasa" placeholder="Número da casa" class="form-control"  type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Gênero</label>
-                                    <div class="col-md-4">
-                                        <div class="radio">
-                                            <label style="padding-left: 25px">
-                                                <input type="radio" name="genero" value="no" /> Masculino 
-                                            </label><label style="padding-left: 25px">
-                                                <input type="radio" name="genero" value="yes" /> Feminino
-                                            </label>
                                         </div>
                                     </div>
                                 </div>

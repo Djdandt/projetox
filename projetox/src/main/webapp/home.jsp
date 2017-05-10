@@ -63,9 +63,6 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                        <li id="entrar" data-toggle="modal" data-target="#cadastrar" class="entrar">
-                            <a href="#"><font color="white">CADASTRE-SE</font></a>
-                        </li>
                         <li id="entrar" data-toggle="modal" data-target="#login" style="background: rgba(255,255,255,0.2); border-radius: 10px;">
                             <a href="#"><font color="white">ENTRAR</font></a>
                         </li>

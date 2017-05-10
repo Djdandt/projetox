@@ -103,7 +103,7 @@ public class AutorizacaoFilter implements Filter {
                 && usuario.temPapel("ADMIN")) {
             return true;
         } else if (pagina.endsWith("estoque")
-                && usuario.temPapel("BASICO")) {
+                && usuario.temPapel("ADMIN")) {
             return true;
 
         } else if (pagina.endsWith("cliente")
