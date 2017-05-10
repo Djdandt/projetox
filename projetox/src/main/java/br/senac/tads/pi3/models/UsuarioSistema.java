@@ -41,8 +41,8 @@ public class UsuarioSistema {
     USUARIOS_CADASTRADOS = new LinkedHashMap<>();
     USUARIOS_CADASTRADOS.put("madruga", new UsuarioSistema("madruga",
 	    "Seu Madruga", "pagueoaluguel", new String[]{"BASICO"}));
-    USUARIOS_CADASTRADOS.put("bozo", new UsuarioSistema("bozo",
-	    "Palhaço Bozo", "abcd1234", new String[]{"BASICO", "ADMIN"}));
+    USUARIOS_CADASTRADOS.put("admin", new UsuarioSistema("admin",
+	    "Administrador", "admin", new String[]{"BASICO", "ADMIN"}));
   }
 
   private String usuario;
