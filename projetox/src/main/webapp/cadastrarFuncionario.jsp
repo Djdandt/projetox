@@ -30,7 +30,7 @@
         <!--          <div class="modal fade" id="cadastrar" role="dialog">-->
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-horizontal" action="cliente" method="post"  id="form_cadastro">
+                <form class="form-horizontal" action="cadastrarFuncionario" method="post"  id="form_cadastro">
 
                     <center>
                         <div class="register-block">
@@ -42,15 +42,15 @@
 
                                 <!-- Text input-->
 
-                                <div class="form-group">
+<!--                                <div class="form-group">
                                     <label class="col-md-4 control-label">Usuário</label>  
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="nome" placeholder="Usuário para fazer login" class="form-control"  type="text">
+                                            <input  name="username" placeholder="Usuário para fazer login" class="form-control"  type="text">
                                         </div>
                                     </div>
-                                </div>
+                                </div>-->
 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Primeiro Nome</label>  
@@ -169,12 +169,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label"> Tipo de Funcionário</label>
+                                    <label class="col-md-4 control-label"> Cargo do Funcionário</label>
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="tipo" class="form-control selectpicker">
-                                                <option value="" disabled selected>Selecione...</option>
+                                            <select required name="cargo" class="form-control selectpicker">
+                                                <option value="" disabled selected>Selecione um cargo...</option>
                                                 <option>Admin</option>
                                                 <option>Vendedor</option>
                                                 <option >Estoquista</option>

@@ -37,7 +37,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author bruno.flima4
  */
-@WebServlet("/login")
+@WebServlet("/menu")
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
     HttpSession sessao = request.getSession(false);
     if (sessao != null && sessao.getAttribute("usuario") != null) {
      RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+	    = request.getRequestDispatcher("/WEB-INF/jsp/menu.jsp");
     dispatcher.forward(request, response);
       return;
     }
@@ -95,7 +95,7 @@ public class LoginServlet extends HttpServlet {
       sessao = request.getSession(true);
       sessao.setAttribute("usuario", usuarioSistema);
 
-      response.sendRedirect(request.getContextPath() + "/login");
+      response.sendRedirect(request.getContextPath() + "/menu");
     } else {
       response.sendRedirect(
 	      request.getContextPath() + "/erroLogin.jsp");

@@ -18,7 +18,15 @@
         <p><c:out value="${sessionScope.novoCliente.sobrenome}" /></p>
         <p><c:out value="${sessionScope.novoCliente.dataNasc}" /></p>
         <p><c:out value="${sessionScope.novoCliente.cpf}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.email}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.telefone}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.estado}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.cidade}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.endereco}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.cep}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.numCasa}" /></p>
+        <p><c:out value="${sessionScope.novoCliente.genero}" /></p>
         <c:remove scope="session" var="novoCliente" />
-        <a href="cliente">Voltar</a>
+        <a href="clientes">Voltar</a>
     </body>
 </html>

@@ -11,16 +11,17 @@
     <title>Funcionários Cadastrados</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" />
-    <link href="css/estilo.css" rel="stylesheet" />
+<!--    <link href="css/estilo.css" rel="stylesheet" />-->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </head>
   <body>
-    <c:import url="./cabecalho.jsp" />
+<!--    cabeçalho jsp aqui-->
     <div class="container">
       <div class="row">
 	<div class="col-sm-12">
 	<h2>Funcionários Cadastrados</h2>
+        <a class="btn btn-default" style="float: right" href="menu">Voltar</a>
 	<table class="table">
 	  <tr>
 	    <th>ID</th>
@@ -29,19 +30,19 @@
 	    <th>Telefone</th>
             <th>Cargo</th>
 	  </tr>
-	  <c:forEach items="${listaContatos}" var="contato">
+	  <c:forEach items="${listaFuncionarios}" var="funcionario">
 	    <tr>
-	      <td><c:out value="${contato.id}" /></td>
-	      <td><c:out value="${contato.nome}" /></td>
-	      <td><c:out value="${contato.email}" /></td>
-	      <td><c:out value="${contato.telefone}" /></td>
-              <td><c:out value="${contato.cargo}" /></td>
+	      <td><c:out value="${funcionario.id}" /></td>
+	      <td><c:out value="${funcionario.nome}" /></td>
+	      <td><c:out value="${funcionario.email}" /></td>
+	      <td><c:out value="${funcionario.telefone}" /></td>
+              <td><c:out value="${funcionario.cargo}" /></td>
 	    </tr>
 	  </c:forEach>
 	</table>
 	</div>
       </div>
     </div>
-    <c:import url="./rodape.jsp" />
+<!--    rodapé jsp aqui-->
   </body>
 </html>

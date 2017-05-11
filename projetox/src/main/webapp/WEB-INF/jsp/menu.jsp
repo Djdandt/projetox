@@ -29,9 +29,9 @@
 		<li><a href="#"><b/>Home</a></li>
                 <li><a href="#">Consultar</a>
                     <ul>
-	                  <li><a href="cliente.jsp">Cliente</a></li>
-                          <li><a href="estoque.jsp">Produto</a></li>
-                          <li><a href="#">Funcionário</a></li>
+	                  <li><a href="clientes">Cliente</a></li>
+                          <li><a href="estoque">Produto</a></li>
+                          <li><a href="funcionarios">Funcionário</a></li>
                     </ul>   
                     </li>
 		<li><a href="#">Relatórios</a></li>
@@ -39,10 +39,10 @@
 	         	<ul>
 	                  <li><a href="cadastrarCliente.jsp">Cliente</a></li>
 	                  <li><a href="cadastrarFuncionario.jsp">Funcionário</a></li>
-                          <li><a href="entrada.jsp">Produto</a></li>                    
+                          <li><a href="cadastrarProduto.jsp">Produto</a></li>                    
 	       		</ul>
 			</li>
-		<li><a href="#">Estoque</a></li>                
+		<li><a href="estoque">Estoque</a></li>                
 </ul>
 </nav>
 

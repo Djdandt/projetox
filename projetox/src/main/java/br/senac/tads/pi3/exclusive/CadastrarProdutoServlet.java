@@ -20,8 +20,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author vinicius.fbatista1
  */
-@WebServlet(name = "EntradaServlet", urlPatterns = {"/entrada"})
-public class EntradaServlet extends HttpServlet {
+@WebServlet(name = "CadastrarProdutoServlet", urlPatterns = {"/cadastrarProduto"})
+public class CadastrarProdutoServlet extends HttpServlet {
 
   /**
    * Neste exemplo, somente apresenta a tela do formulário
@@ -35,7 +35,7 @@ public class EntradaServlet extends HttpServlet {
   protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	  throws ServletException, IOException {
     RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("entrada.jsp");
+	    = request.getRequestDispatcher("cadastrarProduto.jsp");
     dispatcher.forward(request, response);
   }
 
@@ -85,7 +85,7 @@ public class EntradaServlet extends HttpServlet {
     } else {
       // Tem erro no preenchimento dos dados.
       // Reapresenta o formulário para o usuário indicando os erros.
-      RequestDispatcher dispatcher = request.getRequestDispatcher("entrada.jsp");
+      RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
       dispatcher.forward(request, response);
     }
   }

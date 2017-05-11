@@ -41,7 +41,8 @@ import javax.servlet.http.HttpSession;
  * @author fernando.tsuda
  */
 @WebFilter(filterName = "AutorizacaoFilter",
-        servletNames = {"EstoqueServlet", "EntradaServlet", "ClienteServlet", "CadastrarClienteServlet"},
+        servletNames = {"EstoqueServlet", "CadastrarProdutoServlet", "ClienteServlet", "CadastrarClienteServlet", 
+        "FuncionarioServlet", "CadastrarFuncionarioServlet"},
         urlPatterns = {"/protegido/*"}
 )
 public class AutorizacaoFilter implements Filter {
@@ -79,7 +80,7 @@ public class AutorizacaoFilter implements Filter {
         // Usuario nulo significa que não está logado
         // Redireciona para tela de login
         if (usuario == null) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/menu");
             return;
         }
 
@@ -99,18 +100,24 @@ public class AutorizacaoFilter implements Filter {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
 
-        if (pagina.endsWith("entrada")
+        if (pagina.endsWith("cadastrarProduto")
                 && usuario.temPapel("ADMIN")) {
             return true;
         } else if (pagina.endsWith("estoque")
                 && usuario.temPapel("ADMIN")) {
             return true;
 
-        } else if (pagina.endsWith("cliente")
+        } else if (pagina.endsWith("clientes")
                 && usuario.temPapel("BASICO")) {
             return true;
 
         } else if (pagina.endsWith("cadastrarCliente")
+                && usuario.temPapel("ADMIN")) {
+            return true;
+        } else if (pagina.endsWith("cadastrarFuncionario")
+                && usuario.temPapel("ADMIN")) {
+            return true;
+        } else if (pagina.endsWith("funcionarios")
                 && usuario.temPapel("ADMIN")) {
             return true;
         }

@@ -332,7 +332,7 @@
                 <!--   Modal content -->
                 <div class="modal-content">		
 
-                    <form id='entrar' name='entrar' action="login" method="POST">
+                    <form id='entrar' name='entrar' action="menu" method="POST">
                         <center>
                             <div class="login-block">
                                 <table>

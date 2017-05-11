@@ -33,7 +33,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="cliente" method="post"  id="form_cadastro">
+                <form class="form-horizontal" action="cadastrarProduto" method="post"  id="form_cadastro">
 
                     <center>
                         <div class="register-block">

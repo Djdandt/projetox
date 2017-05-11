@@ -27,6 +27,7 @@
       <div class="row">
 	<div class="col-sm-12">
 	<h2>Clientes Cadastrados</h2>
+        <a class="btn btn-default" style="float: right" href="menu">Voltar</a>
 	<table class="table">
 	  <tr>
 	    <th>ID</th>
@@ -34,6 +35,7 @@
 	    <th>Sobrenome</th>
 	    <th>Data de Nascimento</th>
 	    <th>CPF</th>
+	    <th>E-mail</th>
 	  </tr>
 	  <c:forEach items="${listaClientes}" var="cliente">
 	    <tr>
@@ -42,6 +44,7 @@
 	      <td><c:out value="${cliente.sobrenome}" /></td>
 	      <td><c:out value="${cliente.dataNasc}" /></td>
 	      <td><c:out value="${cliente.cpf}" /></td>
+	      <td><c:out value="${cliente.email}" /></td>
          
 	    </tr>
 	  </c:forEach>

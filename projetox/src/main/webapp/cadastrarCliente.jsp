@@ -30,7 +30,7 @@
         <!--          <div class="modal fade" id="cadastrar" role="dialog">-->
         <div class="modal-dialog">
             <div class="modal-content">
-                <form class="form-horizontal" action="cliente" method="post"  id="form_cadastro">
+                <form class="form-horizontal" action="cadastrarCliente" method="post"  id="form_cadastro">
 
                     <center>
                         <div class="register-block">

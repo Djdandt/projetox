@@ -27,6 +27,7 @@
       <div class="row">
 	<div class="col-sm-12">
 	<h2>Produtos Cadastrados</h2>
+        <a class="btn btn-default" style="float: right" href="menu">Voltar</a>
 	<table class="table">
 	  <tr>
 	    <th>ID</th>
