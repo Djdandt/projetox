@@ -11,21 +11,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>eXclusive - Novo Cliente Cadastrado</title>
+        <style>
+            .success {
+            background-color: hsla(120,100%,50%,0.3);
+            font-size: 20px;
+            border-left: 6px solid green;
+            }
+        </style>
     </head>
     <body>
-        <h1>Um novo cliente foi cadastrado!</h1>
-        <h1><c:out value="${sessionScope.novoCliente.nome}" /></h1>
-        <p><c:out value="${sessionScope.novoCliente.sobrenome}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.dataNasc}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.cpf}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.email}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.telefone}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.estado}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.cidade}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.endereco}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.cep}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.numCasa}" /></p>
-        <p><c:out value="${sessionScope.novoCliente.genero}" /></p>
+        <h1>Novo Cliente!</h1>
+        <div class="success">
+            <h3><c:out value="${sessionScope.novoCliente.nome}"/><p><strong>Cadastrado com Sucesso!</strong></p></h3>
+        </div>
         <c:remove scope="session" var="novoCliente" />
         <a href="clientes">Voltar</a>
     </body>

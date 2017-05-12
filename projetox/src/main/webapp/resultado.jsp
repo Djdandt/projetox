@@ -11,15 +11,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>eXclusive - Novo Produto Cadastrado</title>
+         <style>
+            .success {
+            background-color: hsla(120,100%,50%,0.3);
+            font-size: 20px;
+            border-left: 6px solid green;
+            }
+        </style>
     </head>
     <body>
-        <h1>Um novo produto foi cadastrado!</h1>
-        <h1><c:out value="${sessionScope.novoProduto.nome}" /></h1>
-        <p><c:out value="${sessionScope.novoProduto.codigo}" /></p>
-        <p><c:out value="${sessionScope.novoProduto.tipo}" /></p>
-        <p><c:out value="${sessionScope.novoProduto.quantidade}" /></p>
-        <p><c:out value="${sessionScope.novoProduto.descricao}" /></p>
-        <p><c:out value="${sessionScope.novoProduto.valor}" /></p>
+        <h1>Novo Produto!</h1>
+         <div class="success">
+            <h3><c:out value="${sessionScope.novoProduto.nome}"/><p><strong>Cadastrado com Sucesso!</strong></p></h3>
+        </div>
         <c:remove scope="session" var="novoProduto" />
         <a href="estoque">Voltar</a>
     </body>

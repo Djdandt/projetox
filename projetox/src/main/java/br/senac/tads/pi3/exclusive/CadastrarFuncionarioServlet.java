@@ -36,7 +36,7 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher
-                = request.getRequestDispatcher("cadastrarFuncionario.jsp");
+                = request.getRequestDispatcher("funcionarioCadastrado.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -81,7 +81,7 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.
-            RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarFuncionario.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("funcionarioCadastrado.jsp");
             dispatcher.forward(request, response);
         }
     }

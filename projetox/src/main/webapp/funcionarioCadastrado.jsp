@@ -11,19 +11,21 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>eXclusive - Novo Funcionário Cadastrado</title>
+        <style>
+            .success {
+            background-color: hsla(120,100%,50%,0.3);
+            font-size: 20px;
+            border-left: 6px solid green;
+            }
+        </style>
     </head>
+    <h1>Novo Funcionário</h1>
     <body>
-        <h1>Um novo funcionário foi cadastrado!</h1>
-        <h1><c:out value="${sessionScope.novoFuncionario.nome}" /></h1>
-        <p><c:out value="${sessionScope.novoFuncionario.sobrenome}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.dataNasc}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.cpf}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.email}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.telefone}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.estado}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.cidade}" /></p>
-        <p><c:out value="${sessionScope.novoFuncionario.cargo}" /></p>
+        <div class="success">
+            <h3><c:out value="${sessionScope.novoFuncionario.nome}"/><p><strong>Cadastrado com Sucesso!</strong></p></h3>
+        </div>
         <c:remove scope="session" var="novoFuncionario" />
-        <a href="funcionarios">Voltar</a>
+        <a href="funcionarios.jsp">Voltar</a>
+        
     </body>
 </html>
