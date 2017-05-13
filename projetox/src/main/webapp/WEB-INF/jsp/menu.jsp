@@ -28,7 +28,7 @@
                 </div>-->
         <nav>
             <ul class="menu">
-                <li><a href="#"><b/>Home</a></li>
+                <li><a href="home.jsp"><b/>Home</a></li>
                 <li><a href="#">Consultar</a>
                     <ul>
                         <li><a href="clientes">Cliente</a></li>
@@ -36,7 +36,7 @@
                         <li><a href="funcionarios">Funcionário</a></li>
                     </ul>   
                 </li>
-                <li><a href="#">Relatórios</a></li>
+                <li><a href="relatorio">Relatórios</a></li>
                 <li><a href="#">Cadastro</a>
                     <ul>
                         <li><a href="#" data-toggle="modal" data-target="#cadastrarCliente"><font>Cliente</font></a></li> 

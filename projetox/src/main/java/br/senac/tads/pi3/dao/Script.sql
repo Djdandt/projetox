@@ -49,7 +49,7 @@ create table Funcionario (
   cidadeFuncionario VARCHAR(50) NOT NULL,
   cargo VARCHAR(50) NOT NULL
 
-)
+);
 
 -- create table Venda(
 --     idVenda INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
