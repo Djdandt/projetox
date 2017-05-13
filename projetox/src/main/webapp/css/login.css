@@ -28,7 +28,7 @@ color:whitesmoke;
 .menu li ul{
 position:absolute; 
 top:27.5px; 
-left:0;
+left:-40px;
 background-color:rgba(255, 251, 242, 0);
 display:none;
 }	
