@@ -20,6 +20,7 @@
 <!--    <link href="css/estilos.css" rel="stylesheet" />-->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <link href="css/estiloso.css" rel="stylesheet">
   </head>
   <body>
 <!--    c:import url="./cabecalho.jsp-->
@@ -45,6 +46,8 @@
 	      <td><c:out value="${cliente.dataNasc}" /></td>
 	      <td><c:out value="${cliente.cpf}" /></td>
 	      <td><c:out value="${cliente.email}" /></td>
+              <td id="excluir"><a href="#" class="btn btn-danger">Excluir</a></td>
+              <td id="alterar"><a href="#" class="btn btn-warning">Alterar</a></td>
          
 	    </tr>
 	  </c:forEach>

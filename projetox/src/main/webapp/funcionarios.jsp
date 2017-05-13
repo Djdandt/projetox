@@ -14,6 +14,7 @@
 <!--    <link href="css/estilo.css" rel="stylesheet" />-->
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <link href="css/estiloso.css" rel="stylesheet">
   </head>
   <body>
 <!--    cabeçalho jsp aqui-->
@@ -37,6 +38,8 @@
 	      <td><c:out value="${funcionario.email}" /></td>
 	      <td><c:out value="${funcionario.telefone}" /></td>
               <td><c:out value="${funcionario.cargo}" /></td>
+              <td id="excluir"><a href="#" class="btn btn-danger">Excluir</a></td>
+              <td id="alterar"><a href="#" class="btn btn-warning">Alterar</a></td>
 	    </tr>
 	  </c:forEach>
 	</table>
