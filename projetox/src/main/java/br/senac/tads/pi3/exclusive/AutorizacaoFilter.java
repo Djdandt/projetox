@@ -80,7 +80,7 @@ public class AutorizacaoFilter implements Filter {
         // Usuario nulo significa que não está logado
         // Redireciona para tela de login
         if (usuario == null) {
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/menu");
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/home.jsp");
             return;
         }
 
@@ -100,7 +100,7 @@ public class AutorizacaoFilter implements Filter {
         String paginaAcessada = request.getRequestURI();
         String pagina = paginaAcessada.replace(request.getContextPath(), "");
 
-        if (pagina.endsWith("cadastrarProduto")
+        if (pagina.endsWith("cadastrarProduto.jsp")
                 && usuario.temPapel("ADMIN")) {
             return true;
         } else if (pagina.endsWith("estoque")
@@ -108,7 +108,7 @@ public class AutorizacaoFilter implements Filter {
             return true;
 
         } else if (pagina.endsWith("clientes")
-                && usuario.temPapel("BASICO")) {
+                && usuario.temPapel("BASICO") || usuario.temPapel("ADMIN")) {
             return true;
 
         } else if (pagina.endsWith("cadastrarCliente")

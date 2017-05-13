@@ -51,18 +51,18 @@ create table Funcionario (
 
 )
 
--- create table Venda(
---     idVenda INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
---     idCliente INTEGER NOT NULL,
---     idProduto INTEGER NOT NULL,
---     nomeCliente VARCHAR(50) NOT NULL,
---     nomeProduto VARCHAR(50) NOT NULL,
---     DataVenda TIMESTAMP NOT NULL,
---     ValorFinal DOUBLE NOT NULL,
---     PRIMARY KEY (idVenda),
---     FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
---     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
--- );
+ create table Venda(
+    idVenda INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    idCliente INTEGER NOT NULL,
+    idProduto INTEGER NOT NULL,
+    nomeCliente VARCHAR(50) NOT NULL,
+    nomeProduto VARCHAR(50) NOT NULL,
+    dataVenda TIMESTAMP NOT NULL,
+    valorFinal DOUBLE NOT NULL,
+    PRIMARY KEY (idVenda),
+    FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 --    idVenda INTEGER NOT NULL,

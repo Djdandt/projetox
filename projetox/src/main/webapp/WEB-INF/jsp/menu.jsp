@@ -36,7 +36,7 @@
                         <li><a href="funcionarios">Funcionário</a></li>
                     </ul>   
                 </li>
-                <li><a href="#">Relatórios</a></li>
+                <li><a href="relatorio.jsp">Relatórios</a></li>
                 <li><a href="#">Cadastro</a>
                     <ul>
                         <li><a href="#" data-toggle="modal" data-target="#cadastrarCliente"><font>Cliente</font></a></li> 
@@ -51,6 +51,7 @@
 
 
                 <li><a href="estoque">Estoque</a></li>                
+                <li><a href="vendas.jsp"><b/>Vendas</a></li>
             </ul>
         </nav>
 
