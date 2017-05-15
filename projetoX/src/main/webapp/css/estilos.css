@@ -1,0 +1,47 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {   
+  /* Margin bottom by footer height */
+  margin-bottom: 30px;
+    
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+  background-color: #f5f5f5;
+}
+
+.menu ul {
+  display: inline-block;
+  list-style: none;
+}
+
+.menu ul > li {
+  display: inline-block;
+  list-style: none;
+}
+
+.logado {
+  background: rgba(128, 128, 128, 0.26);
+  width: 150px;
+  height: 80px;
+  float: right;
+  left: 99%;
+  right: 0;
+  opacity: 0.5;
+}
+
+.logado:hover {
+    opacity: 1.0;
+}
+
+.logado a {
+    margin: 10px;
+}
