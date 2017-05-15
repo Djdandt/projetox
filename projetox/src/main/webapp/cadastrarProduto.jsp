@@ -13,6 +13,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/teste.css" rel="stylesheet">
         <link href="css/estilo.css" rel="stylesheet">
+        <link href="css/estilo.css" rel="stylesheet">
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
         <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
@@ -27,7 +28,10 @@
         <title>Cadastro de Produtos</title>
     </head>
     <body>
-
+        
+        <div class="logado">
+            <c:import url="cabecalho.jsp" />
+        </div>
 
         <!--          <div class="modal fade" id="cadastrar" role="dialog">-->
         <div class="modal-dialog">

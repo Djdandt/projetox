@@ -12,6 +12,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/teste.css" rel="stylesheet">
         <link href="css/estilo.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet">
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
         <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
@@ -26,6 +27,10 @@
         <title>Cadastro de Funcionários</title>
     </head>
     <body>
+
+        <div class="logado">
+            <c:import url="cabecalho.jsp" />
+        </div>
 
         <!--          <div class="modal fade" id="cadastrar" role="dialog">-->
         <div class="modal-dialog">
@@ -42,15 +47,15 @@
 
                                 <!-- Text input-->
 
-<!--                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Usuário</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="username" placeholder="Usuário para fazer login" class="form-control"  type="text">
-                                        </div>
-                                    </div>
-                                </div>-->
+                                <!--                                <div class="form-group">
+                                                                    <label class="col-md-4 control-label">Usuário</label>  
+                                                                    <div class="col-md-4 inputGroupContainer">
+                                                                        <div class="input-group">
+                                                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                                            <input  name="username" placeholder="Usuário para fazer login" class="form-control"  type="text">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>-->
 
                                 <div class="form-group">
                                     <label class="col-md-4 control-label">Primeiro Nome</label>  
@@ -89,7 +94,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="cpf" placeholder="000.000.000-00" class="form-control"  type="text">
+                                            <input name="cpf" placeholder="000.000.000-00" maxlength="11" class="form-control"  type="text" maxlength="11">
                                         </div>
                                     </div>
                                 </div>
@@ -113,7 +118,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input name="telefone" placeholder="(xx)xxxxx-xxxx" class="form-control" type="text">
+                                            <input name="telefone" placeholder="(xx)xxxxx-xxxx" maxlength="11" class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>
