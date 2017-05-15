@@ -40,7 +40,7 @@
                             <h2 style="margin-bottom: 25px"> Cadastro de Produtos </h2>
 
                             <!-- Form Name -->
- 
+
                             <table>
 
                                 <!-- Text input-->
@@ -104,6 +104,20 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group"> 
+                                    <label class="col-md-4 control-label">Filial</label>
+                                    <div class="col-md-4 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <select required name="filial" class="form-control selectpicker">
+                                                <option value="" disabled selected>Selecione a filial</option>
+                                                <option value="bolsa">São Paulo</option>
+                                                <option value="relogio">Minas Gerais</option>
+                                                <option value="oculos">Amazonas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!-- Text input-->
 

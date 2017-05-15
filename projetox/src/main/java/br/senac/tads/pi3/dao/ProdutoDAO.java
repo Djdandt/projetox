@@ -87,8 +87,7 @@ public class ProdutoDAO extends ConexaoBD {
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
 
-       //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-
+            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
                 String nome = resultados.getString("Nome");
@@ -97,7 +96,7 @@ public class ProdutoDAO extends ConexaoBD {
                 int quantidade = resultados.getInt("Quantidade");
                 String descricao = resultados.getString("Descricao");
                 double valor = resultados.getDouble("Valor");
-                
+
                 Produto produto = new Produto(id, nome, codigo,
                         tipo, quantidade, descricao, valor);
                 lista.add(produto);
@@ -222,6 +221,87 @@ public class ProdutoDAO extends ConexaoBD {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void excluirProduto(int id) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "DELETE FROM Produto WHERE (idProduto=?)";
+
+        try {
+
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+
+    }
+
+    public void atualizarProduto(Produto produto) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "UPDATE Produto SET Nome=?, Codigo=?, Tipo=?, Quantidade=?, Descricao=?, Valor=? "
+                + " WHERE (idProduto=?)";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, produto.getNome());
+            stmt.setInt(2, produto.getCodigo());
+            stmt.setString(3, produto.getTipo());
+            stmt.setInt(4, produto.getQuantidade());
+            stmt.setString(5, produto.getDescricao());
+            stmt.setDouble(6, produto.getValor());
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+
         } finally {
             if (stmt != null) {
                 try {

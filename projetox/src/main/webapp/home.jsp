@@ -4,6 +4,7 @@
     Author     : Vinicius Ferreira Batista
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,6 +28,7 @@
         <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
 
         <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" type="image/png" href="imagens/x4.png"/>
 
         <title>eXclusive - Home</title>
 
@@ -63,9 +65,31 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+                        <c:if test="${not empty sessionScope.usuario}">
+                              <li id="users" data-toggle="modal" class="user"><font size="1" color="white" style="float: left; margin-right: 100%; margin-top: 10px;">
+                                  <c:out value="Usuario: ${sessionScope.usuario.nomeCompleto}"/></font></li>
+                            <!--                            <font size="1" color="white" style="padding-left:50px;"><a href="logout">Sair</a></font>-->
+
+                        </c:if>
+
                         <li id="entrar" data-toggle="modal" data-target="#login" style="background: rgba(255,255,255,0.2); border-radius: 10px;">
-                            <a href="#"><font color="white">ENTRAR</font></a>
+
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.usuario}">
+
+                                    <a href="menu"><font color="white">MENU</font></a>
+                                <li id="sair" data-toggle="modal" data-target="#sair" class="logout">
+                                    <a href="logout"><font color="white">SAIR</font></a>
+                                </li>
+
+                            </c:when>
+                            <c:otherwise>
+                                <a href="#"><font color="white">ENTRAR</font></a>
+                                </c:otherwise>
+                            </c:choose>
+
                         </li>
+
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -223,5 +247,5 @@
 
 
 
-
+                                <c:import url="./rodape.jsp" />
                                 </html>

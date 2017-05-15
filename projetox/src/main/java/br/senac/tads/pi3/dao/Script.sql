@@ -51,18 +51,36 @@ create table Funcionario (
 
 );
 
--- create table Venda(
---     idVenda INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
---     idCliente INTEGER NOT NULL,
---     idProduto INTEGER NOT NULL,
---     nomeCliente VARCHAR(50) NOT NULL,
---     nomeProduto VARCHAR(50) NOT NULL,
---     DataVenda TIMESTAMP NOT NULL,
---     ValorFinal DOUBLE NOT NULL,
---     PRIMARY KEY (idVenda),
---     FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
---     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
--- );
+ create table Venda(
+    idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    idCliente INT NOT NULL,
+    idProduto INT NOT NULL,
+    nomeCliente VARCHAR(50) NOT NULL,
+    nomeProduto VARCHAR(50) NOT NULL,
+    dataVenda TIMESTAMP NOT NULL,
+    valorFinal DOUBLE NOT NULL,
+    PRIMARY KEY (idVenda),
+    FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
+create table Relatorio(
+    idRelatorio INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    nmProduto VARCHAR(50) NOT NULL,
+    nmCliente VARCHAR(50) NOT NULL,
+    tipoProduto VARCHAR(50) NOT NULL
+    venda TIMESTAMP NOT NULL,
+    vlFinal DOUBLE NOT NULL,
+    valorProduto DOUBLE NOT NULL,
+    quantProduto INT NOT NULL
+    FOREIGN KEY (nomeProduto) REFERENCES Produto(Nome),
+    FOREIGN KEY(nomeCliente) REFERENCES Cliente(nomeCliente),
+    FOREIGN KEY (tipoProduto) REFERENCES Produto(Tipo),
+    FOREIGN KEY (venda) REFERENCES Venda(dataVenda),
+    FOREIGN KEY (vlFinal) REFERENCES Venda(valorFinal),
+    FOREIGN KEY(valorProduto) REFERENCES Produto(Valor),
+    FOREIGN KEY(quantProduto) REFERENCES Produto(Quantidade)
+);
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 --    idVenda INTEGER NOT NULL,
