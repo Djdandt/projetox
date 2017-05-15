@@ -13,6 +13,7 @@
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/teste.css" rel="stylesheet">
         <link href="css/estilo.css" rel="stylesheet">
+        <link href="css/estilos.css" rel="stylesheet" />
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
         <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
         <link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
@@ -26,6 +27,10 @@
         <title>Vendas</title>
     </head>
     <body>
+
+        <div class="logado">
+            <c:import url="cabecalho.jsp" />
+        </div>
 
         <div class="modal-dialog">
             <div class="modal-content">
@@ -47,11 +52,11 @@
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="filial" class="form-control selectpicker">
+                                            <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
-                                                <option value="bolsa">São Paulo</option>
-                                                <option value="relogio">Minas Gerais</option>
-                                                <option value="oculos">Amazonas</option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeProduto}" />
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -62,11 +67,11 @@
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="filial" class="form-control selectpicker">
+                                            <select required name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
-                                                <option value="bolsa">São Paulo</option>
-                                                <option value="relogio">Minas Gerais</option>
-                                                <option value="oculos">Amazonas</option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeCliente}" />
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -111,6 +116,6 @@
                 </form>
             </div>
         </div>
-
+        <c:import url="./rodape.jsp" />
     </body>
 </html>
