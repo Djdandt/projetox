@@ -1,0 +1,61 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 29/04/2017, 23:20:55
+    Author     : Vinicius Ferreira Batista
+*/
+
+body {
+    background-image: url("../imagens/asd.png");
+}
+#conteudo {
+    width: 1000px;
+    position:absolute;
+    height: 500px;
+    border-radius: 50px;
+    top: 0%;
+    left: 0;
+    bottom:0;
+    right: 0;
+    margin: auto;
+    background: -webkit-radial-gradient(center, ellipse cover, rgba(209,209,209,1) 16%,rgba(0, 0, 0, .5) 100%);
+}
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    position: relative;
+    top:5%;
+    left:5%;
+    bottom:0;
+    right:0;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    padding: 5px;
+    width: 150px;
+}
+
+img:hover {
+    box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+.m1 {
+    padding-top: 0;
+    padding-bottom: 0
+}
+h1 {
+    color: white;
+}
+/*.img-with-text {
+    position: relative;
+    text-align: center;
+    width: 100px;
+}
+
+.img-with-text img {
+    display: block;
+    margin: 0 auto;
+}*/
+
