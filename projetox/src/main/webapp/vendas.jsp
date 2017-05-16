@@ -35,7 +35,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="vendas" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="vendaCadastrada.jsp" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -56,7 +56,7 @@
                                                 <option value="" disabled selected>Selecione o produto</option>
                                                 <option>
                                                     <c:forEach items="${listaVendas}" var="venda">
-                                                        <c:out value="${vendas.produto}" />
+                                                        <c:out value="${produto.nome}" />
                                                     </c:forEach>
                                                 </option>
                                             </select>
@@ -124,7 +124,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
                             </div>
                         </div>
 

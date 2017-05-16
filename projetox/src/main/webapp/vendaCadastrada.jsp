@@ -24,6 +24,6 @@
             <h3><c:out value="${sessionScope.novoFuncionario.nome}"/><p><strong>Cadastrado com Sucesso!</strong></p></h3>
         </div>
     <c:remove scope="session" var="novaenda" />
-    <a href="funcionarios.jsp">Voltar</a>
+    <a href="menu">Voltar</a>
 </body>
 </html>
