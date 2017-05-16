@@ -55,8 +55,8 @@
                                             <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
                                                 <option>
-                                                    <c:forEach items="${listaVendas}" var="venda">
-                                                        <c:out value="${produto.nome}" />
+                                                    <c:forEach items="${listaProduto}" var="produto">
+                                                        <c:out value="${produto.produto}" />
                                                     </c:forEach>
                                                 </option>
                                             </select>
@@ -86,7 +86,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="dataAtual" class="form-control"  type="date">
+                                            <input name="dataAtual" class="form-control"  type="date" required>
                                         </div>
                                     </div>
                                 </div>
@@ -97,7 +97,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number">
+                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number" required>
                                         </div>
                                     </div>
                                 </div>

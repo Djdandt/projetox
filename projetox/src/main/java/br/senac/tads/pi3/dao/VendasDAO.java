@@ -5,7 +5,6 @@
  */
 package br.senac.tads.pi3.dao;
 
-import br.senac.tads.pi3.models.Funcionario;
 import br.senac.tads.pi3.models.Vendas;
 import java.sql.Connection;
 import java.sql.Date;
@@ -131,8 +130,8 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, cpfFuncionario, valorFinal) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "(nomeCliente, nomeProduto, dataVenda, valorFinal) "
+                + "VALUES (?, ?, ?, ?)";
         try {
             conn = obterConexao();
 
@@ -199,8 +198,8 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, cpfFuncionario, valorFinal) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "(nomeCliente, nomeProduto, dataVenda, valorFinal) "
+                + "VALUES (?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);

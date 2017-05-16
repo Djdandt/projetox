@@ -51,7 +51,7 @@ create table Funcionario (
 
 );
 
- create table Venda(
+ create table Venda (
     idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     idCliente INT NOT NULL,
     idProduto INT NOT NULL,
@@ -59,12 +59,11 @@ create table Funcionario (
     nomeProduto VARCHAR(50) NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
-    PRIMARY KEY (idVenda),
-    FOREIGN KEY(idCliente), REFERENCES Cliente(idCliente),
-    FOREIGN KEY(idProduto), REFERENCES Produto(idCProduto),
-    FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-    FOREIGN KEY(valorFinal) REFERENCES Produto(Valor)
+    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
+    FOREIGN KEY (nomeCliente) REFERENCES Cliente(nomeCliente),
+    FOREIGN KEY (nomeProduto) REFERENCES Produto(Nome),
+    FOREIGN KEY (valorFinal) REFERENCES Produto(Valor)
 );
 
 create table Relatorio(

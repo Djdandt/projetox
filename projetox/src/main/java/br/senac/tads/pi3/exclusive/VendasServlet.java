@@ -6,6 +6,7 @@
 package br.senac.tads.pi3.exclusive;
 
 import br.senac.tads.pi3.dao.ClienteDAO;
+import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.dao.VendasDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -31,9 +32,13 @@ public class VendasServlet extends HttpServlet {
         
         ClienteDAO daoc = new ClienteDAO();
         
+        ProdutoDAO daop = new ProdutoDAO();
+        
         request.setAttribute("listaVendas", dao.listar());
         
         request.setAttribute("listaCliente", daoc.listar());
+        
+        request.setAttribute("listaProduto", daop.listar());
         
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("vendas.jsp");
