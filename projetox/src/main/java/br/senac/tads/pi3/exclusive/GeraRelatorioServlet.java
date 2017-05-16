@@ -89,6 +89,20 @@ public class GeraRelatorioServlet extends HttpServlet {
                     this.getServletContext().getRequestDispatcher("/relatorio.jsp").forward(request, response);
                     break;
                 }
+                case "listarProdutosExcluidos": {
+                    ProdutoDAO produto = new ProdutoDAO();
+                    
+                    //A lista que ira retornar do metodo sera usado na criacao de uma nova classe
+                    RelatorioProduto relatorioProduto = new RelatorioProduto(produto.listarExclusoes());
+                    
+                    //Setando os valores que serao resgatados pela JSP
+                    request.setAttribute("relatorio", "Relatorio de produtos excluidos!!");
+                    request.setAttribute("relatorioprodutos", relatorioProduto.getRelatorioProdutos());                    
+                    
+                    //Enviando os valores para a JSP
+                    this.getServletContext().getRequestDispatcher("/relatorio.jsp").forward(request, response);
+                    break;
+                }
                 case "listarFuncionarios": {
                     FuncionarioDAO funcionario = new FuncionarioDAO();
                     

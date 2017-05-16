@@ -36,6 +36,7 @@
                     <label class="input-group-addon" style="width:110px;"for="tipoRelatorio">Tipo:</label>
                     <select name="tipoRelatorio" class="form-control">
                         <option value="listarProdutos" selected="selected">Listar Produtos</option>
+                        <option value="listarProdutosExcluidos">Listar Produtos Excluídos</option>
                         <option value="listarFuncionarios">Listar Funcionários</option>
                         <option value="listarClientes">Listar Clientes</option>                      
                     </select>
@@ -51,22 +52,43 @@
                     <tr>
                         <th>ID</th>
                         <th>NOME</th>
-                        <th>CODIGO</th>
-                        <th>TIPO</th>
                         <th>QUANTIDADE</th>
-                        <th>DESCRICAO</th>
-                        <th>VALOR</th>
+                        <th>Valor</th>
+                        <th>Cadastrado Por</th>
+                        <th>Data</th>
                     </tr>
 
                     <c:forEach items="${relatorioprodutos}" var="rel">
                         <tr>
                             <td>${rel.id}</td>
                             <td>${rel.nome}</td>
-                            <td>${rel.codigo}</td>
-                            <td>${rel.tipo}</td>
                             <td>${rel.quantidade}</td>
-                            <td>${rel.descricao}</td>
                             <td>${rel.valor}</td>
+                            <td>${rel.funcio}</td>
+                            <td>${rel.dataCadastro}</td>
+                        </tr>
+                    </c:forEach>                                                           
+                </table>                                      
+            </c:if>
+            <c:if test = "${relatorio == 'Relatorio de produtos excluidos!!'}">
+                <table class="table" border="3">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOME</th>
+                        <th>QUANTIDADE</th>
+                        <th>Valor</th>
+                        <th>Excluido Por</th>
+                        <th>Data</th>
+                    </tr>
+
+                    <c:forEach items="${relatorioprodutos}" var="rel">
+                        <tr>
+                            <td>${rel.id}</td>
+                            <td>${rel.nome}</td>
+                            <td>${rel.quantidade}</td>
+                            <td>${rel.valor}</td>
+                            <td>${rel.funcio}</td>
+                            <td>${rel.dataExclusao}</td>
                         </tr>
                     </c:forEach>                                                           
                 </table>                                      

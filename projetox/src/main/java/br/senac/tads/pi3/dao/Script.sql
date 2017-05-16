@@ -16,7 +16,9 @@ create table Produto(
     Tipo VARCHAR(50) NOT NULL,
     Quantidade INT NOT NULL,
     Descricao VARCHAR(255),
-    Valor DOUBLE NOT NULL
+    Valor DOUBLE NOT NULL,
+    CadastradoPor VARCHAR(50) NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
 );
 
 create table Cliente (
@@ -82,6 +84,15 @@ create table Relatorio(
     FOREIGN KEY (vlFinal) REFERENCES Venda(valorFinal),
     FOREIGN KEY(valorProduto) REFERENCES Produto(Valor),
     FOREIGN KEY(quantProduto) REFERENCES Produto(Quantidade)
+);
+
+create table ProdutosExcluidos(
+    idProduto INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    Nome VARCHAR(50) NOT NULL,
+    Quantidade INT NOT NULL,
+    Valor DOUBLE NOT NULL,
+    ExcluidoPor VARCHAR(50) NOT NULL,
+    DataExclusao TIMESTAMP NOT NULL
 );
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
