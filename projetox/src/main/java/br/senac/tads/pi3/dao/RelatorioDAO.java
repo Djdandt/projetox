@@ -47,9 +47,9 @@ public class RelatorioDAO extends ConexaoBD {
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -58,14 +58,14 @@ public class RelatorioDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(RelatorioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

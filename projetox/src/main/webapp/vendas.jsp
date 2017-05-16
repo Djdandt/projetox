@@ -54,11 +54,9 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
-                                                <option>
-                                                    <c:forEach items="${listaVendas}" var="venda">
-                                                        <c:out value="${vendas.produto}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeProduto}" />
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -71,22 +69,10 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
-                                                <option>
-                                                    <c:forEach items="${listaCliente}" var="cliente">
-                                                        <c:out value="${cliente.nome}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeCliente}" />
+                                                </c:forEach>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Data atual</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="dataAtual" class="form-control"  type="date">
                                         </div>
                                     </div>
                                 </div>
@@ -107,9 +93,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                                <c:forEach items="${listaVendas}" var="venda">
-                                                    <c:out value="${vendas.valorFinal}" />
-                                                </c:forEach>
+                                            <input name="valor" placeholder="Valor" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>

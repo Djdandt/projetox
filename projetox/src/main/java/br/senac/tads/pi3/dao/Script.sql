@@ -16,7 +16,9 @@ create table Produto(
     Tipo VARCHAR(50) NOT NULL,
     Quantidade INT NOT NULL,
     Descricao VARCHAR(255),
-    Valor DOUBLE NOT NULL
+    Valor DOUBLE NOT NULL,
+    CadastradoPor VARCHAR(50) NOT NULL,
+    DataCadastro TIMESTAMP NOT NULL
 );
 
 create table Cliente (
@@ -60,11 +62,8 @@ create table Funcionario (
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
     PRIMARY KEY (idVenda),
-    FOREIGN KEY(idCliente), REFERENCES Cliente(idCliente),
-    FOREIGN KEY(idProduto), REFERENCES Produto(idCProduto),
     FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
-    FOREIGN KEY(valorFinal) REFERENCES Produto(Valor)
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
 );
 
 create table Relatorio(
@@ -84,6 +83,19 @@ create table Relatorio(
     FOREIGN KEY(valorProduto) REFERENCES Produto(Valor),
     FOREIGN KEY(quantProduto) REFERENCES Produto(Quantidade)
 );
+
+create table ProdutosExcluidos(
+    idProduto INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    Nome VARCHAR(50) NOT NULL,
+    Quantidade INT NOT NULL,
+    Valor DOUBLE NOT NULL,
+    ExcluidoPor VARCHAR(50) NOT NULL,
+    DataExclusao TIMESTAMP NOT NULL
+);
+
+-- TRUNCATE TABLE FUNCIONARIO; COMANDO PARA APAGAR DADOS DE UMA TABELA
+
+
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
 --    idVenda INTEGER NOT NULL,
@@ -94,3 +106,17 @@ create table Relatorio(
 --    FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
 --    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
 -- );
+
+
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor) VALUES ('Produto1', 1, 'bolsa', 
+-- 5, 'nada', 589);
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor) VALUES ('Produto2', 2, 'bolsa', 
+-- 5, 'nada', 589);
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor) VALUES ('Produto3', 3, 'bolsa', 
+-- 5, 'nada', 589);
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor) VALUES ('Produto4', 4, 'bolsa', 
+-- 5, 'nada', 589);
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor) VALUES ('Produto5', 5, 'bolsa', 
+-- 5, 'nada', 589);
+-- INSERT INTO Produto (Nome, Codigo, Tipo, Quantidade, Descricao, Valor, CadastradoPor, DataCadastro) VALUES ('Produto6', 6, 'bolsa', 
+-- 5, 'nada', 589, 'Administrador', '11-11-11');

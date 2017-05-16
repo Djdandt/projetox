@@ -28,7 +28,9 @@ public class FuncionarioDAO extends ConexaoBD {
         Connection conn = null;
         Funcionario f = null;
 
-        String sql = "SELECT * FROM Funcionario WHERE idFuncionario = ?";
+        String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc,"
+                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo "
+                + "FROM Funcionario WHERE idFuncionario = ?";
 
         try {
             conn = obterConexao();
@@ -81,7 +83,9 @@ public class FuncionarioDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Funcionario";
+        String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc,"
+                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo "
+                + "FROM Funcionario";
 
         List<Funcionario> lista = new ArrayList<>();
         try {

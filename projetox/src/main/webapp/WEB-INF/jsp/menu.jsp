@@ -19,6 +19,8 @@
         <link href="css/estilos.css" rel="stylesheet" />
         <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/cpf.js" ></script>
+
     </head>
     <body>
 
@@ -108,7 +110,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                            <input name="valor" placeholder="Valor" class="form-control"  type="text">
+                                            <input class="form-control" placeholder="Digite o Preço"  type="text" name="valor" required="required"/>
                                         </div>
                                     </div>
                                 </div>
@@ -164,6 +166,7 @@
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
                                 <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="hidden" name="funcio" value="${sessionScope.usuario.nomeCompleto}"/>
                             </div>
                         </div>
 
@@ -241,7 +244,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="cpf" placeholder="000.000.000-00" class="form-control"  type="text">
+                                            <input name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
                                         </div>
                                     </div>
                                 </div>
@@ -410,7 +413,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="cpf" placeholder="000.000.000-00" class="form-control"  type="text">
+                                            <input name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
                                         </div>
                                     </div>
                                 </div>

@@ -28,7 +28,9 @@ public class ClienteDAO extends ConexaoBD {
         Connection conn = null;
         Cliente c = null;
 
-        String sql = "SELECT * FROM Cliente WHERE idCliente = ?";
+        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente,"
+                + "cepCliente, numCasa, generoCliente "
+                + "FROM Cliente WHERE idCliente = ?";
 
         try {
             conn = obterConexao();
@@ -84,7 +86,9 @@ public class ClienteDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT * FROM Cliente";
+        String sql = "SELECT idCliente, nomeCliente, sobrenomeCliente, dataNasc, cpfCliente, emailCliente, telefoneCliente, estadoCliente, cidadeCliente, enderecoCliente,"
+                + "cepCliente, numCasa, generoCliente "
+                + "FROM Cliente";
 
         List<Cliente> lista = new ArrayList<>();
         try {

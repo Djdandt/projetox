@@ -9,6 +9,7 @@ import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -66,6 +67,9 @@ public class AltDelProduto extends HttpServlet {
         boolean erro = false;
 
         String nome = request.getParameter("nome");
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        double valor = Double.parseDouble(request.getParameter("valor"));
+        String funcionario = request.getParameter("funcio");
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
@@ -74,6 +78,8 @@ public class AltDelProduto extends HttpServlet {
             if (request.getParameter("excluir") != null) {
                 ProdutoDAO dao = new ProdutoDAO();
                 int id = Integer.parseInt(request.getParameter("excluir"));
+                Produto novo = new Produto(id, nome, quantidade, valor, funcionario, new Date());
+                dao.adicionarExclusao(novo);
                 dao.excluirProduto(id);
 
                 sessao.setAttribute("excluindo", nome);

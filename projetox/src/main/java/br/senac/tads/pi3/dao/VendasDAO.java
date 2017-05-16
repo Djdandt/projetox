@@ -5,7 +5,7 @@
  */
 package br.senac.tads.pi3.dao;
 
-import br.senac.tads.pi3.models.Funcionario;
+import br.senac.tads.pi3.models.Produto;
 import br.senac.tads.pi3.models.Vendas;
 import java.sql.Connection;
 import java.sql.Date;
@@ -29,7 +29,8 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
         Vendas v = null;
 
-        String sql = "SELECT * WHERE idVenda = ?";
+        String sql = "SELECT idVenda, idCliente, idProduto, nomeCliente, nomeProduto, dataVenda, valorFinal FROM Venda"
+                + "WHERE idVenda = ?";
 
         try {
             conn = obterConexao();
@@ -49,9 +50,9 @@ public class VendasDAO extends ConexaoBD {
                 break;
             }
         } catch (SQLException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             // Código colocado aqui para garantir que a conexão com o banco
             // seja sempre fechada, independentemente se executado com sucesso
@@ -60,70 +61,18 @@ public class VendasDAO extends ConexaoBD {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(FuncionarioDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
         return v;
-    }
-
-    public List<Vendas> listar() {
-        Statement stmt = null;
-        Connection conn = null;
-
-        String sql = "SELECT * FROM Venda";
-
-        List<Vendas> lista = new ArrayList<>();
-        try {
-            conn = obterConexao();
-            stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(sql);
-
-            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-            while (resultados.next()) {
-                int id = resultados.getInt("idVenda");
-                int idCliente = resultados.getInt("idCliente");
-                int idProduto = resultados.getInt("idProduto");
-                String nome = resultados.getString("nomeCliente");
-                String produto = resultados.getString("nomeProduto");
-                Date venda = resultados.getDate("dataVenda");
-                double valorFinal = resultados.getDouble("valorFinal");
-                
-                Vendas vendas = new Vendas(id, idCliente, idProduto, nome, produto, venda, valorFinal);
-                lista.add(vendas);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            // Código colocado aqui para garantir que a conexão com o banco
-            // seja sempre fechada, independentemente se executado com sucesso
-            // ou erro.
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return lista;
     }
 
     public void incluirComTransacao(Vendas vendas) {
@@ -131,17 +80,19 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, cpfFuncionario, valorFinal) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "(Nome, Codigo, Tipo, Quantidade, Descricao, Valor) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setString(2, vendas.getNomeProduto());
-            stmt.setDate(3, vendas.getDataVenda());
-            stmt.setDouble(4, vendas.getValorFinal());
+            stmt.setInt(1, vendas.getIdCliente());
+            stmt.setInt(2, vendas.getIdProduto());
+            stmt.setString(3, vendas.getNomeCliente());
+            stmt.setString(4, vendas.getNomeProduto());
+            stmt.setDate(5, vendas.getDataVenda());
+            stmt.setDouble(6, vendas.getValorFinal());
 
             stmt.executeUpdate();
 
@@ -194,28 +145,42 @@ public class VendasDAO extends ConexaoBD {
         }
     }
 
-    public void incluir(Vendas vendas) {
-        PreparedStatement stmt = null;
+    public List<Vendas> listar() {
+        Statement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, cpfFuncionario, valorFinal) "
-                + "VALUES (?, ?, ?, ?, ?)";
+        String sql = "SELECT * FROM Venda";
+
+        List<Vendas> lista = new ArrayList<>();
         try {
             conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setString(2, vendas.getNomeProduto());
-            stmt.setDate(3, vendas.getDataVenda());
-            stmt.setDouble(4, vendas.getValorFinal());
-            stmt.executeUpdate();
-            //System.out.println("Registro incluido com sucesso.");
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+
+            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+            while (resultados.next()) {
+
+                int idVenda = resultados.getInt("idVenda");
+                int idCli = resultados.getInt("idCliente");
+                int idProd = resultados.getInt("idProduto");
+                String nomeCli = resultados.getString("nomeCliente");
+                String nomeProd = resultados.getString("nomeProduto");
+                Date dataVenda = resultados.getDate("dataVenda");
+                double valorFinal = resultados.getDouble("valorFinal");
+
+                Vendas vendas = new Vendas(idVenda, idCli, idProd, nomeCli,
+                        nomeProd, dataVenda, valorFinal);
+                lista.add(vendas);
+            }
 
         } catch (SQLException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
             if (stmt != null) {
                 try {
                     stmt.close();
@@ -231,5 +196,6 @@ public class VendasDAO extends ConexaoBD {
                 }
             }
         }
+        return lista;
     }
 }

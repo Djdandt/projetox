@@ -22,7 +22,7 @@
     <body>
         <h1>Produto Removido!</h1>
          <div class="success">
-            <h3><c:out value="${sessionScope.excluindo.nome}"/><p><strong>Excluído com sucesso</strong></p></h3>
+            <h3><p><strong>Excluído com sucesso</strong></p></h3>
         </div>
         <c:remove scope="session" var="excluindo" />
         <a href="estoque">Voltar</a>

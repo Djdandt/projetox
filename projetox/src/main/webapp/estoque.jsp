@@ -56,6 +56,10 @@
 
                                 <td id="alterar"><input type="submit" name="alterar" value="Alterar" class="btn btn-warning" onclick="value =${produto.id}"></td>
                                 <td id="excluir"><input type="submit" name="excluir" value="Excluir" class="btn btn-danger" onclick="value =${produto.id};"></td>
+                                <td id="excluir"><input type="hidden" name="nome" value="${produto.nome}" class="btn btn-danger"></td>
+                                <td id="excluir"><input type="hidden" name="quantidade" value="${produto.quantidade}" class="btn btn-danger"></td>
+                                <td id="excluir"><input type="hidden" name="valor" value="${produto.valor}" class="btn btn-danger"></td>
+                                <td id="excluir"><input type="hidden" name="funcio" value="${sessionScope.usuario.nomeCompleto}" class="btn btn-danger"></td>
 
 
                             </tr>
