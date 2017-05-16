@@ -60,8 +60,11 @@ create table Funcionario (
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
     PRIMARY KEY (idVenda),
+    FOREIGN KEY(idCliente), REFERENCES Cliente(idCliente),
+    FOREIGN KEY(idProduto), REFERENCES Produto(idCProduto),
     FOREIGN KEY (idProduto) REFERENCES Produto(CodProduto),
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
+    FOREIGN KEY(valorFinal) REFERENCES Produto(Valor)
 );
 
 create table Relatorio(

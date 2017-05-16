@@ -27,8 +27,7 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
         Produto p = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor"
-                + "FROM Produto WHERE idProduto = ?";
+        String sql = "SELECT * FROM Produto WHERE idProduto = ?";
 
         try {
             conn = obterConexao();
@@ -78,8 +77,7 @@ public class ProdutoDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor "
-                + "FROM Produto";
+        String sql = "SELECT * FROM Produto";
 
         List<Produto> lista = new ArrayList<>();
         try {
