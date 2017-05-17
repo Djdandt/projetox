@@ -29,6 +29,8 @@ public class VendasServlet extends HttpServlet {
         
         ProdutoDAO daop = new ProdutoDAO();
         
+        request.setAttribute("listaVenda", dao.listar());
+        
         request.setAttribute("listaCliente", daoc.listar());
         
         request.setAttribute("listaProduto", daop.listar());
