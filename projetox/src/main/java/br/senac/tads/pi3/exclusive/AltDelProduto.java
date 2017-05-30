@@ -70,6 +70,8 @@ public class AltDelProduto extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         double valor = Double.parseDouble(request.getParameter("valor"));
         String funcionario = request.getParameter("funcio");
+        String descricao = request.getParameter("descricao");
+        String tipo = request.getParameter("tipo");
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
@@ -86,14 +88,17 @@ public class AltDelProduto extends HttpServlet {
                 response.sendRedirect("resultado_1.jsp");
 
             } else if (request.getParameter("alterar") != null) {
-//                Produto novo = new Produto(nome, codigo, tipo, quantidade, descricao, valor);
-
-//                ProdutoDAO dao = new ProdutoDAO();
-//                dao.atualizarProduto(novo);
-//
-//                HttpSession sessao = request.getSession();
-//                sessao.setAttribute("novoProduto", novo);
-                response.sendRedirect("resultado.jsp");
+               
+                Produto produto = new Produto();
+                produto.setNome(nome);
+                produto.setQuantidade(quantidade);
+                produto.setValor(valor);
+                produto.setDescricao(descricao);
+                produto.setTipo(tipo);
+                
+                ProdutoDAO dao = new ProdutoDAO();
+//                dao.atualizarProduto(produto);
+                response.sendRedirect("alterarProd.jsp");
 
             }
 

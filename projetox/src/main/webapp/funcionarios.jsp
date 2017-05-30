@@ -33,6 +33,7 @@
                             <th>E-mail</th>
                             <th>Telefone</th>
                             <th>Cargo</th>
+                            <th>Login</th>
                         </tr>
                         <c:forEach items="${listaFuncionarios}" var="funcionario">
                             <tr>
@@ -41,6 +42,7 @@
                                 <td><c:out value="${funcionario.email}" /></td>
                                 <td><c:out value="${funcionario.telefone}" /></td>
                                 <td><c:out value="${funcionario.cargo}" /></td>
+                                <td><c:out value="${funcionario.login}" /></td>
                                 <td id="alterar"><a href="#" class="btn btn-warning">Alterar</a></td>
 
                                 <td id="excluir"><a href="#" class="btn btn-danger">Excluir</a></td>

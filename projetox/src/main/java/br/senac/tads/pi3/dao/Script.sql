@@ -11,14 +11,15 @@
 create table Produto(
     idProduto INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1)
  CONSTRAINT PK_Produto PRIMARY KEY,
-    Nome VARCHAR(50) NOT NULL,
-    Codigo INT NOT NULL UNIQUE,
-    Tipo VARCHAR(50) NOT NULL,
-    Quantidade INT NOT NULL,
-    Descricao VARCHAR(255),
-    Valor DOUBLE NOT NULL,
-    CadastradoPor VARCHAR(50) NOT NULL,
-    DataCadastro TIMESTAMP NOT NULL
+    nomeProduto VARCHAR(50) NOT NULL,
+    codigo INT NOT NULL UNIQUE,
+    tipoProduto VARCHAR(50) NOT NULL,
+    quantidade INT NOT NULL,
+    descricao VARCHAR(255),
+    valorProduto DOUBLE NOT NULL,
+    cadastradoPor VARCHAR(50) NOT NULL,
+    dataCadastro TIMESTAMP NOT NULL,
+    disponivel boolean
 );
 
 create table Cliente (
@@ -49,7 +50,9 @@ create table Funcionario (
   telefoneFuncionario VARCHAR(50) NOT NULL,
   estadoFuncionario VARCHAR(50) NOT NULL,
   cidadeFuncionario VARCHAR(50) NOT NULL,
-  cargo VARCHAR(50) NOT NULL
+  cargo VARCHAR(50) NOT NULL,
+  login VARCHAR(20) NOT NULL,
+  senha VARCHAR(20) NOT NULL
 
 );
 
@@ -87,12 +90,13 @@ create table Relatorio(
 );
 
 create table ProdutosExcluidos(
-    idProduto INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
-    Nome VARCHAR(50) NOT NULL,
-    Quantidade INT NOT NULL,
-    Valor DOUBLE NOT NULL,
-    ExcluidoPor VARCHAR(50) NOT NULL,
-    DataExclusao TIMESTAMP NOT NULL
+    idProduto INT NOT NULL,
+    nomeProduto VARCHAR(50) NOT NULL,
+    quantidade INT NOT NULL,
+    valorProduto DOUBLE NOT NULL,
+    excluidoPor VARCHAR(50) NOT NULL,
+    dataExclusao TIMESTAMP NOT NULL,
+    FOREIGN KEY (idProduto) References Produto(idProduto)
 );
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),

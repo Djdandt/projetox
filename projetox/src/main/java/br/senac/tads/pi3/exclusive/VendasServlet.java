@@ -33,7 +33,7 @@ public class VendasServlet extends HttpServlet {
         
         request.setAttribute("listaCliente", daoc.listar());
         
-        request.setAttribute("listaProduto", daop.listar());
+//        request.setAttribute("listaProduto", daop.listar());
         
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("vendas.jsp");

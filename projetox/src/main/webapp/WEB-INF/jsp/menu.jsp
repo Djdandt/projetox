@@ -61,11 +61,6 @@
         </nav>
 
 
-    <center>	
-
-        <img class="logo2" src="imagens/logo.png" style="margin: auto; width: 100%">
-    </center>
-
 
     <div class="modal fade" id="cadastrarProduto" role="dialog">
         <div class="modal-dialog">
@@ -88,7 +83,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                            <input  name="nome" placeholder="Nome" class="form-control"  type="text">
+                                            <input  name="nome" placeholder="Nome" required="required" class="form-control" maxlength="50" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -100,7 +95,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                                            <input name="codigo" placeholder="Codigo" class="form-control"  type="text">
+                                            <input name="codigo" required placeholder="Codigo" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -336,6 +331,33 @@
                                                 <option >Gerente</option>
 
                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">Login</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input name="login" placeholder="Login" class="form-control"  type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">Senha</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input  name="senha" placeholder="Digite sua senha" class="form-control"  type="password">
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-4 control-label">Confirmar Senha</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input  name="confirmaSenha" placeholder="Confirme a senha" class="form-control"  type="password">
                                         </div>
                                     </div>
                                 </div>

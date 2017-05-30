@@ -54,7 +54,7 @@ public class CadastrarProdutoServlet extends HttpServlet {
         boolean erro = false;
 
         String nome = request.getParameter("nome");
-        if (nome == null || nome.length() < 1) {
+        if (nome == null || nome.length() < 1 || nome.equals("")) {
             erro = true;
             request.setAttribute("erroNome", true);
         }
