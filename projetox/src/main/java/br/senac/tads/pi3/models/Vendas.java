@@ -11,8 +11,6 @@ public class Vendas {
     
     private int idCliente;
     private int idProduto;
-    private String nomeCliente;
-    private String nomeProduto;
     private Date dataVenda;
     private double valorFinal;
 
@@ -29,14 +27,6 @@ public class Vendas {
 
     public void setIdProduto(int idProduto) {
         this.idProduto = idProduto;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
     }
 
     public void setDataVenda(Date dataVenda) {
@@ -59,14 +49,6 @@ public class Vendas {
         return idProduto;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
     public Date getDataVenda() {
         return dataVenda;
     }
@@ -75,21 +57,17 @@ public class Vendas {
         return valorFinal;
     }
 
-    public Vendas(int idVenda, int idCliente, int idProduto, String nomeCliente, String nomeProduto, Date dataVenda, double valorFinal) {
+    public Vendas(int idVenda, int idCliente, int idProduto, Date dataVenda, double valorFinal) {
         this.idVenda = idVenda;
         this.idCliente = idCliente;
         this.idProduto = idProduto;
-        this.nomeCliente = nomeCliente;
-        this.nomeProduto = nomeProduto;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
     }
 
-    public Vendas(int idCliente, int idProduto, String nomeCliente, String nomeProduto, Date dataVenda, double valorFinal) {
+    public Vendas(int idCliente, int idProduto, Date dataVenda, double valorFinal) {
         this.idCliente = idCliente;
         this.idProduto = idProduto;
-        this.nomeCliente = nomeCliente;
-        this.nomeProduto = nomeProduto;
         this.dataVenda = dataVenda;
         this.valorFinal = valorFinal;
     }

@@ -22,18 +22,16 @@ public class VendasServlet extends HttpServlet {
     public void doGet(HttpServletRequest request,
             HttpServletResponse response)
             throws ServletException {
-
+        
+        ProdutoDAO daoP = new ProdutoDAO();
+        
+        ClienteDAO daoC = new ClienteDAO();
+        
         VendasDAO dao = new VendasDAO();
         
-        ClienteDAO daoc = new ClienteDAO();
+        request.setAttribute("listaProduto", daoP.listar());
         
-        ProdutoDAO daop = new ProdutoDAO();
-        
-        request.setAttribute("listaVenda", dao.listar());
-        
-        request.setAttribute("listaCliente", daoc.listar());
-        
-//        request.setAttribute("listaProduto", daop.listar());
+        request.setAttribute("listaCliente", daoC.listar());
         
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("vendas.jsp");
