@@ -48,11 +48,11 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
-                                                <option>
-                                                    <c:forEach items="${listaProduto}" var="produto">
-                                                        <c:out value="${produto.produto}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaProduto}" var="produto">
+                                                    <option value="${produto.nome}">
+                                                        <c:out value="${produto.nome}"/>
+                                                    </option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -65,11 +65,9 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
-                                                <option>
-                                                    <c:forEach items="${listaCliente}" var="cliente">
-                                                        <c:out value="${cliente.nome}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaCliente}" var="cliente">
+                                                    <option value="${cliente.nome}">${cliente.nome}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>

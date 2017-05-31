@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,11 +37,9 @@ public class VendasDAO extends ConexaoBD {
                 int id = resultados.getInt("idVenda");
                 int idCliente = resultados.getInt("idCliente");
                 int idProduto = resultados.getInt("idProduto");
-                String nome = resultados.getString("nomeCliente");
-                String produto = resultados.getString("nomeProduto");
                 Date venda = resultados.getDate("dataVenda");
                 double valorFinal = resultados.getDouble("valorFinal");
-                v = new Vendas(id, idCliente, idProduto, nome, produto, venda, valorFinal);
+                v = new Vendas(id, idCliente, idProduto, venda, valorFinal);
                 break;
             }
         } catch (SQLException ex) {
@@ -79,18 +79,16 @@ public class VendasDAO extends ConexaoBD {
             conn = obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
-
-            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+            
             while (resultados.next()) {
                 int id = resultados.getInt("idVenda");
                 int idCliente = resultados.getInt("idCliente");
                 int idProduto = resultados.getInt("idProduto");
-                String nome = resultados.getString("nomeCliente");
-                String produto = resultados.getString("nomeProduto");
                 Date venda = resultados.getDate("dataVenda");
                 double valorFinal = resultados.getDouble("valorFinal");
                 
-                Vendas vendas = new Vendas(id, idCliente, idProduto, nome, produto, venda, valorFinal);
+                Vendas vendas = new Vendas(id, idCliente, idProduto, venda, valorFinal);
                 lista.add(vendas);
             }
 
@@ -125,17 +123,15 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, valorFinal) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(dataVenda, valorFinal) "
+                + "VALUES (?, ?)";
         try {
             conn = obterConexao();
 
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setString(2, vendas.getNomeProduto());
-            stmt.setDate(3, vendas.getDataVenda());
-            stmt.setDouble(4, vendas.getValorFinal());
+            stmt.setDate(1, vendas.getDataVenda());
+            stmt.setDouble(2, vendas.getValorFinal());
 
             stmt.executeUpdate();
 
@@ -193,15 +189,13 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeCliente, nomeProduto, dataVenda, valorFinal) "
-                + "VALUES (?, ?, ?, ?)";
+                + "(dataVenda, valorFinal) "
+                + "VALUES (?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setString(2, vendas.getNomeProduto());
-            stmt.setDate(3, vendas.getDataVenda());
-            stmt.setDouble(4, vendas.getValorFinal());
+            stmt.setDate(1, vendas.getDataVenda());
+            stmt.setDouble(2, vendas.getValorFinal());
             stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 

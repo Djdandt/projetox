@@ -55,7 +55,7 @@
                     </ul>   
                 </li>   
                 <li><a href="estoque">Estoque</a></li> 
-                <li><a href="vendas.jsp"><b/>Vendas</a></li>
+                <li><a href="vendas"><b/>Vendas</a></li>
                 <li><a href="relatorio">Relatórios</a></li>
             </ul>
         </nav>
