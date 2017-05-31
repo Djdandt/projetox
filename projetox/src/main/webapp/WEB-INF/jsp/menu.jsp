@@ -20,6 +20,8 @@
         <script src="js/jquery-3.2.1.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/cpf.js" ></script>
+        <script type="text/javascript" src="js/telefone.js" ></script>
+        <script type="text/javascript" src="js/telefone2.js" ></script>
 
     </head>
     <body>
@@ -83,7 +85,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                            <input  name="nome" placeholder="Nome" required="required" class="form-control" maxlength="50" type="text">
+                                            <input  name="nome" placeholder="Nome" required class="form-control" maxlength="50" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -105,7 +107,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                            <input class="form-control" placeholder="Digite o Preço"  type="text" name="valor" required="required"/>
+                                            <input class="form-control" placeholder="Digite o Preço"  type="text" name="valor" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +134,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number">
+                                            <input name="quantidade" required placeholder="Quantidade" class="form-control"  type="number">
                                         </div>
                                     </div>
                                 </div>
@@ -145,7 +147,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-                                            <textarea rows="6" style="width: 15em; resize: none;" id="txtdescricao" name="descricao"></textarea>
+                                            <textarea rows="6" maxlength="255" style="width: 15em; resize: none;" id="txtdescricao" name="descricao"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -207,7 +209,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="nome" placeholder="Primeiro Nome" class="form-control"  type="text">
+                                            <input  name="nome" required placeholder="Primeiro Nome" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +221,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="sobrenome" placeholder="Sobrenome" class="form-control"  type="text">
+                                            <input name="sobrenome" required placeholder="Sobrenome" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -229,7 +231,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                            <input name="dataNasc" placeholder="Data de nascimento" class="form-control"  type="Date">
+                                            <input name="dataNasc" required placeholder="Data de nascimento" class="form-control"  type="Date">
                                         </div>
                                     </div>
                                 </div>
@@ -239,7 +241,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
+                                            <input name="cpf" required placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
                                         </div>
                                     </div>
                                 </div>
@@ -250,7 +252,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                            <input name="email" placeholder="E-mail" class="form-control"  type="text">
+                                            <input name="email" required placeholder="E-mail" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -263,7 +265,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input name="telefone" placeholder="(xx)xxxxx-xxxx" class="form-control" type="text">
+                                            <input id="telefonef" name="telefone" maxlength="14" required placeholder="(xx)xxxxx-xxxx" class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -314,7 +316,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-                                            <input name="cidade" placeholder="Cidade" class="form-control"  type="text">
+                                            <input name="cidade" required placeholder="Cidade" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -339,7 +341,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="login" placeholder="Login" class="form-control"  type="text">
+                                            <input name="login" required placeholder="Login" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -348,7 +350,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="senha" placeholder="Digite sua senha" class="form-control"  type="password">
+                                            <input  name="senha" required placeholder="Digite sua senha" class="form-control"  type="password">
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +359,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="confirmaSenha" placeholder="Confirme a senha" class="form-control"  type="password">
+                                            <input  name="confirmaSenha" required placeholder="Confirme a senha" class="form-control"  type="password">
                                         </div>
                                     </div>
                                 </div>
@@ -403,7 +405,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input  name="nome" placeholder="Primeiro Nome" class="form-control"  type="text">
+                                            <input  name="nome" required placeholder="Primeiro Nome" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -415,7 +417,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="sobrenome" placeholder="Sobrenome" class="form-control"  type="text">
+                                            <input name="sobrenome" required placeholder="Sobrenome" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -425,7 +427,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                            <input name="dataNasc" placeholder="Data de nascimento" class="form-control"  type="Date">
+                                            <input name="dataNasc" required placeholder="Data de nascimento" class="form-control"  type="Date">
                                         </div>
                                     </div>
                                 </div>
@@ -435,7 +437,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                            <input name="cpf" placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
+                                            <input name="cpf" required placeholder="000.000.000-00" class="form-control" maxlength="14" type="text" onkeypress="javascript: mascara(this, cpf_mask)">
                                         </div>
                                     </div>
                                 </div>
@@ -446,7 +448,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                            <input name="email" placeholder="E-mail" class="form-control"  type="text">
+                                            <input name="email" required placeholder="E-mail" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -459,7 +461,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-                                            <input name="telefone" placeholder="(xx)xxxxx-xxxx" class="form-control" type="text">
+                                            <input id="telefonec" name="telefone" maxlength="14" required placeholder="(xx)xxxxx-xxxx" class="form-control" type="text">
                                         </div>
                                     </div>
                                 </div>

@@ -108,10 +108,9 @@ public class FuncionarioDAO extends ConexaoBD {
                 String cidade = resultados.getString("cidadeFuncionario");
                 String cargo = resultados.getString("cargo");
                 String login = resultados.getString("login");
-                String senha = resultados.getString("senha");
 
                 Funcionario funcionario = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone,
-                        estado, cidade, cargo, login, senha);
+                        estado, cidade, cargo, login);
                 lista.add(funcionario);
             }
 
