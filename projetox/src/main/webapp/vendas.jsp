@@ -1,3 +1,9 @@
+<%-- 
+    Document   : vendas
+    Created on : 13/05/2017, 12:13:46
+    Author     : danilo.kwatanabe
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -29,7 +35,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="vendaCadastrada.jsp" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="vendas" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -48,11 +54,9 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
-                                                <option>
-                                                    <c:forEach items="${listaProduto}" var="produto">
-                                                        <c:out value="${produto.produto}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeProduto}" />
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -65,22 +69,10 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
-                                                <option>
-                                                    <c:forEach items="${listaCliente}" var="cliente">
-                                                        <c:out value="${cliente.nome}" />
-                                                    </c:forEach>
-                                                </option>
+                                                <c:forEach items="${listaVendas}" var="venda">
+                                                    <c:out value="${Vendas.nomeCliente}" />
+                                                </c:forEach>
                                             </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Data atual</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="dataAtual" class="form-control"  type="date" required>
                                         </div>
                                     </div>
                                 </div>
@@ -91,7 +83,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number" required>
+                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number">
                                         </div>
                                     </div>
                                 </div>
@@ -101,9 +93,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                                <c:forEach items="${listaVendas}" var="venda">
-                                                    <c:out value="${vendas.valorFinal}" />
-                                                </c:forEach>
+                                            <input name="valor" placeholder="Valor" class="form-control"  type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -118,7 +108,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
+                                <input type="submit" id="btnCadastro" value="Cadastrar" />
                             </div>
                         </div>
 

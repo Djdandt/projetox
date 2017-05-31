@@ -9,26 +9,37 @@ position: fixed;
 
 .menu li{
 position:relative; 
-float:left; 
+float: left; 
 width: 150px;
+padding: 5px;
+top: 50%;
+left: 50%;
+height: 35px;
+background-color: mediumseagreen ;
 }
 
 .menu li a{
-color:gray;
+color:black;
 text-decoration:none;
+width: 120px;
 padding:5px 10px;
 display:block;
+height: 40px;
+left: 50%;
+height: 60px;
 }
 
 .menu li a:hover{
-background:black; 
-color:whitesmoke;
+background: white;
+color:black;
+height: 30px;
+width: 120px;
 }
 
 .menu li ul{
 position:absolute; 
-top:27.5px; 
-left:-40px;
+top:29.5px; 
+left: -115%;
 background-color:rgba(255, 251, 242, 0);
 display:none;
 }	
@@ -40,4 +51,11 @@ display:block;
 .menu li ul li{
 display:block; 
 width:150px;
+}
+
+body {
+        background-image: url(../imagens/imagemxx.jpg);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        
 }

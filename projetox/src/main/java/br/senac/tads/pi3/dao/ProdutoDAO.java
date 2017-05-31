@@ -11,10 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +27,7 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
         Produto p = null;
 
-        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto"
+        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor"
                 + "FROM Produto WHERE idProduto = ?";
 
         try {
@@ -41,12 +38,12 @@ public class ProdutoDAO extends ConexaoBD {
 
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
-                String nome = resultados.getString("nomeProduto");
-                int codigo = resultados.getInt("codigo");
-                String tipo = resultados.getString("tipoProduto");
-                int quantidade = resultados.getInt("quantidade");
-                String descricao = resultados.getString("descricao");
-                double valor = resultados.getDouble("valorProduto");
+                String nome = resultados.getString("Nome");
+                int codigo = resultados.getInt("Codigo");
+                String tipo = resultados.getString("Tipo");
+                int quantidade = resultados.getInt("Quantidade");
+                String descricao = resultados.getString("Descricao");
+                double valor = resultados.getDouble("Valor");
                 p = new Produto(id, nome, codigo, tipo, quantidade, descricao, valor);
                 break;
             }
@@ -77,107 +74,58 @@ public class ProdutoDAO extends ConexaoBD {
 
     }
 
-//    public List<Produto> listar() {
-//        Statement stmt = null;
-//        Connection conn = null;
-//
-//        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto FROM Produto";
-//        
-//        // "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto FROM Produto WHERE disponivel = ? ";
-//
-//        List<Produto> lista = new ArrayList<>();
-//
-//        try {
-//            conn = obterConexao();
-//            stmt = conn.createStatement();
-//            ResultSet resultados = stmt.executeQuery(sql);
-//            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-//            
-//            
-//
-//            while (resultados.next()) {
-//                int id = resultados.getInt("idProduto");
-//                String nome = resultados.getString("nomeProduto");
-//                int codigo = resultados.getInt("codigo");
-//                String tipo = resultados.getString("tipoProduto");
-//                int quantidade = resultados.getInt("quantidade");
-//                String descricao = resultados.getString("descricao");
-//                double valor = resultados.getDouble("valorProduto");
-//                String funcionario = resultados.getString("cadastradoPor");
-//                Date data = resultados.getDate("dataCadastro");
-//
-//                Produto produto = new Produto(id, nome, codigo,
-//                        tipo, quantidade, descricao, valor, funcionario, data);
-//                lista.add(produto);
-//            }
-//
-//        } catch (SQLException ex) {
-//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//        } finally {
-//            // Código colocado aqui para garantir que a conexão com o banco
-//            // seja sempre fechada, independentemente se executado com sucesso
-//            // ou erro.
-//            if (stmt != null) {
-//                try {
-//                    stmt.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//            if (conn != null) {
-//                try {
-//                    conn.close();
-//                } catch (SQLException ex) {
-//                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//            }
-//        }
-//        return lista;
-//    }
-    public List<Produto> listar() throws SQLException, Exception {
-//        String sql = "SELECT * FROM Produto WHERE enabled=?";
-        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, "
-                + " dataCadastro FROM Produto WHERE disponivel = ? ";
-        List<Produto> listaProdutos = null;
+    public List<Produto> listar() {
+        Statement stmt = null;
         Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet result = null;
+
+        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor "
+                + "FROM Produto";
+
+        List<Produto> lista = new ArrayList<>();
         try {
             conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            stmt.setBoolean(1, true);
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
 
-            result = stmt.executeQuery();
-            while (result.next()) {
-                if (listaProdutos == null) {
-                    listaProdutos = new ArrayList<Produto>();
-                }
-                Produto produto = new Produto();
-                produto.setId(result.getInt("idProduto"));
-                produto.setNome(result.getString("nomeProduto"));
-                produto.setCodigo(result.getInt("codigo"));
-                produto.setTipo(result.getString("tipoProduto"));
-                produto.setQuantidade(result.getInt("quantidade"));
-                produto.setDescricao(result.getString("descricao"));
-                produto.setValor(result.getDouble("valorProduto"));
-                produto.setFuncio(result.getString("cadastradoPor"));
-                produto.setDataCadastro(result.getDate("dataCadastro"));
-                listaProdutos.add(produto);
+            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+            while (resultados.next()) {
+                int id = resultados.getInt("idProduto");
+                String nome = resultados.getString("Nome");
+                int codigo = resultados.getInt("Codigo");
+                String tipo = resultados.getString("Tipo");
+                int quantidade = resultados.getInt("Quantidade");
+                String descricao = resultados.getString("Descricao");
+                double valor = resultados.getDouble("Valor");
+
+                Produto produto = new Produto(id, nome, codigo,
+                        tipo, quantidade, descricao, valor);
+                lista.add(produto);
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            if (result != null && !result.isClosed()) {
-                result.close();
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-            if (stmt != null && !stmt.isClosed()) {
-                stmt.close();
-            }
-            if (conn != null && !conn.isClosed()) {
-                conn.close();
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
-        return listaProdutos;
+        return lista;
     }
 
     public void incluirComTransacao(Produto produto) {
@@ -185,9 +133,8 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Produto "
-                + "(nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro, disponivel) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
+                + "(Nome, Codigo, Tipo, Quantidade, Descricao, Valor) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
 
@@ -199,9 +146,6 @@ public class ProdutoDAO extends ConexaoBD {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setString(5, produto.getDescricao());
             stmt.setDouble(6, produto.getValor());
-            stmt.setString(7, produto.getFuncio());
-            stmt.setTimestamp(8, new java.sql.Timestamp(System.currentTimeMillis()));
-            stmt.setBoolean(9, true);
 
             stmt.executeUpdate();
 
@@ -259,8 +203,8 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Produto "
-                + "(nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro, disponivel) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(Nome, Codigo, Tipo, Quantidade, Descricao, Valor) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -270,12 +214,6 @@ public class ProdutoDAO extends ConexaoBD {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setString(5, produto.getDescricao());
             stmt.setDouble(6, produto.getValor());
-            stmt.setString(7, produto.getFuncio());
-            stmt.setTimestamp(8, new java.sql.Timestamp(System.currentTimeMillis()));
-            stmt.setString(9, produto.getFuncio());
-            stmt.setTimestamp(10, new java.sql.Timestamp(System.currentTimeMillis()));
-            stmt.setBoolean(11, true);
-
             stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 
@@ -306,15 +244,13 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE Produto SET disponivel=? WHERE (idProduto=?)";
+        String sql = "DELETE FROM Produto WHERE (idProduto=?)";
 
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-
-            stmt.setBoolean(1, false);
-            stmt.setInt(2, id);
+            stmt.setInt(1, id);
 
             stmt.execute();
 
@@ -382,105 +318,6 @@ public class ProdutoDAO extends ConexaoBD {
                 }
             }
         }
-    }
-
-    public void adicionarExclusao(Produto produto) {
-
-        PreparedStatement stmt = null;
-        Connection conn = null;
-
-        String sql = "INSERT INTO ProdutosExcluidos "
-                + "(nomeProduto, quantidade, valorProduto, excluidoPor, dataExclusao) "
-                + "VALUES (?, ?, ?, ?, ?)";
-
-        try {
-            conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-
-//            Produto produto = new Produto();
-            stmt.setString(1, produto.getNome());
-            stmt.setInt(2, produto.getQuantidade());
-            stmt.setDouble(3, produto.getValor());
-            stmt.setString(4, produto.getFuncio());
-            stmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
-
-            stmt.execute();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
-
-    public List<Produto> listarExclusoes() {
-        Statement stmt = null;
-        Connection conn = null;
-
-        String sql = "SELECT idExclusao, nomeProduto, quantidade, valorProduto, excluidoPor, dataExclusao "
-                + "FROM ProdutosExcluidos";
-
-        List<Produto> lista = new ArrayList<>();
-
-        try {
-            conn = obterConexao();
-            stmt = conn.createStatement();
-            ResultSet resultados = stmt.executeQuery(sql);
-            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
-
-            while (resultados.next()) {
-                int id = resultados.getInt("idExclusao");
-                String nome = resultados.getString("nomeProduto");
-                int quantidade = resultados.getInt("quantidade");
-                double valor = resultados.getDouble("valorProduto");
-                String funcionario = resultados.getString("excluidoPor");
-                Date data = resultados.getDate("dataExclusao");
-
-                Produto produto = new Produto(id, nome,
-                        quantidade, valor, funcionario, data);
-                lista.add(produto);
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            // Código colocado aqui para garantir que a conexão com o banco
-            // seja sempre fechada, independentemente se executado com sucesso
-            // ou erro.
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-        return lista;
     }
 
 }
