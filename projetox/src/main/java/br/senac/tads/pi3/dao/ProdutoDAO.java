@@ -30,7 +30,7 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
         Produto p = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor"
+        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor "
                 + "FROM Produto WHERE idProduto = ?";
 
         try {
@@ -294,18 +294,17 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE Produto SET Nome=?, Codigo=?, Tipo=?, Quantidade=?, Descricao=?, Valor=? "
+        String sql = "UPDATE Produto SET Nome=?, Tipo=?, Quantidade=?, Descricao=?, Valor=? "
                 + " WHERE (idProduto=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
-            stmt.setInt(2, produto.getCodigo());
-            stmt.setString(3, produto.getTipo());
-            stmt.setInt(4, produto.getQuantidade());
-            stmt.setString(5, produto.getDescricao());
-            stmt.setDouble(6, produto.getValor());
+            stmt.setString(2, produto.getTipo());
+            stmt.setInt(3, produto.getQuantidade());
+            stmt.setString(4, produto.getDescricao());
+            stmt.setDouble(5, produto.getValor());
 
             stmt.execute();
 

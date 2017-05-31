@@ -28,8 +28,6 @@ public class VendasServlet extends HttpServlet {
          ProdutoDAO dao = new ProdutoDAO();
         List<Produto> produtos = dao.listar();
         
-
-        
         request.setAttribute("nomeProduto", produtos);
         
         RequestDispatcher dispatcher

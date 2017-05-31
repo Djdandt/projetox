@@ -4,6 +4,7 @@
     Author     : Vinicius Ferreira Batista
 --%>
 
+<%@page import="br.senac.tads.pi3.models.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -54,11 +55,12 @@
                                 <td><c:out value="${produto.quantidade}" /></td>
                                 <td><c:out value="${produto.valor}" /></td>
 
-                                <td id="alterar"><input type="submit" name="alterar" value="Alterar" class="btn btn-warning" onclick="value =${produto.id}"></td>
+                                <td id="alterar"><a href="AltDelProduto?idProduto=${produto.id}">Editar</a></td>
                                 <td id="excluir"><input type="submit" name="excluir" value="Excluir" class="btn btn-danger" onclick="value =${produto.id};"></td>
                                 <td id="excluir"><input type="hidden" name="nome" value="${produto.nome}" class="btn btn-danger"></td>
                                 <td id="excluir"><input type="hidden" name="quantidade" value="${produto.quantidade}" class="btn btn-danger"></td>
                                 <td id="excluir"><input type="hidden" name="valor" value="${produto.valor}" class="btn btn-danger"></td>
+                                <td id="excluir"><input type="hidden" name="descricao" value="${produto.descricao}" class="btn btn-danger"></td>
                                 <td id="excluir"><input type="hidden" name="funcio" value="${sessionScope.usuario.nomeCompleto}" class="btn btn-danger"></td>
 
 

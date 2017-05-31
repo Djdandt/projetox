@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author Vinicius Ferreira Batista
  */
 @WebServlet(name = "AltDelProduto", urlPatterns = {"/AltDelProduto"})
-public class AltDelProduto extends HttpServlet {
+public class AltDelProdutoServlet extends HttpServlet {
 
     /**
      * Neste exemplo, somente apresenta a tela do formulário
@@ -43,11 +43,21 @@ public class AltDelProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        Produto prod = new Produto();
+        ProdutoDAO produto = new ProdutoDAO();
+        Produto envia = produto.obterProduto(Integer.parseInt(request.getParameter("idProduto")));
+        request.setAttribute("prod", envia);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("alterarProd.jsp");
+            dispatcher.forward(request, response);
+            
+            
+         
+         
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(AltDelProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AltDelProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -78,7 +88,7 @@ public class AltDelProduto extends HttpServlet {
             if (request.getParameter("excluir") != null) {
                 ProdutoDAO dao = new ProdutoDAO();
                 int id = Integer.parseInt(request.getParameter("excluir"));
-                Produto novo = new Produto(id, nome, quantidade, valor, funcionario, new Date());
+                Produto novo = new Produto(id, nome, quantidade, valor,funcionario, new Date());
                 dao.adicionarExclusao(novo);
                 dao.excluirProduto(id);
 
@@ -86,21 +96,29 @@ public class AltDelProduto extends HttpServlet {
                 response.sendRedirect("resultado_1.jsp");
 
             } else if (request.getParameter("alterar") != null) {
+                
+                  Produto prod = new Produto();
+                  prod.setNome(request.getParameter("nome"));
+                  prod.setValor(Double.parseDouble(request.getParameter("valor")));
+                  prod.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+                  prod.setDescricao(request.getParameter("descricao"));
+                  ProdutoDAO dao = new ProdutoDAO();
+                  dao.atualizarProduto(prod);
+                  
+                  response.sendRedirect("alterarProd.jsp");
 //                Produto novo = new Produto(nome, codigo, tipo, quantidade, descricao, valor);
 
 //                ProdutoDAO dao = new ProdutoDAO();
 //                dao.atualizarProduto(novo);
 //
 //                HttpSession sessao = request.getSession();
-//                sessao.setAttribute("novoProduto", novo);
-                response.sendRedirect("resultado.jsp");
-
+//                sessao.setAttribute("novoProduto", novo);                
             }
 
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.
-            RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("alterarProd.jsp");
             dispatcher.forward(request, response);
         }
     }

@@ -63,7 +63,7 @@
                                                 <option value="" disabled selected>Selecione o produto</option>
                                                 <option>
                                                     <c:forEach items="${nomeProduto}" var="produto">
-                                                        <c:out value="${produto.nome}" />
+                                                        <c:out value="${produto.nome}"/>
                                                     </c:forEach>
                                                 </option>
                                             </select>
