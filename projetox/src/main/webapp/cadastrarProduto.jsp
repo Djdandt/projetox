@@ -62,16 +62,6 @@
                                 <!-- Text input-->
 
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" >Código</label> 
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
-                                            <input name="codigo" placeholder="Codigo" class="form-control"  type="text">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
                                     <label class="col-md-4 control-label" >Valor</label> 
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">

@@ -25,12 +25,12 @@ import java.util.logging.Logger;
  */
 public class ProdutoDAO extends ConexaoBD {
 
-    public Produto obterProduto(int idProduto) {
+      public Produto obterProduto(int idProduto) {
         PreparedStatement stmt = null;
         Connection conn = null;
         Produto p = null;
 
-        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto"
+        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto "
                 + "FROM Produto WHERE idProduto = ?";
 
         try {
@@ -81,8 +81,10 @@ public class ProdutoDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor, CadastradoPor, DataCadastro "
-                + "FROM Produto";
+//        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro "
+//                + "FROM Produto";
+        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, "
+                + " dataCadastro FROM Produto WHERE disponivel = 'true' ";
 
         List<Produto> lista = new ArrayList<>();
 
@@ -94,14 +96,14 @@ public class ProdutoDAO extends ConexaoBD {
 
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
-                String nome = resultados.getString("Nome");
-                int codigo = resultados.getInt("Codigo");
-                String tipo = resultados.getString("Tipo");
-                int quantidade = resultados.getInt("Quantidade");
-                String descricao = resultados.getString("Descricao");
-                double valor = resultados.getDouble("Valor");
-                String funcionario = resultados.getString("CadastradoPor");
-                Date data = resultados.getDate("DataCadastro");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String tipo = resultados.getString("tipoProduto");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String funcionario = resultados.getString("cadastradoPor");
+                Date data = resultados.getDate("dataCadastro");
 
                 Produto produto = new Produto(id, nome, codigo,
                         tipo, quantidade, descricao, valor, funcionario, data);
@@ -300,18 +302,17 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE Produto SET Nome=?, Codigo=?, Tipo=?, Quantidade=?, Descricao=?, Valor=? "
+        String sql = "UPDATE Produto SET nomeProduto=?, tipoProduto=?, quantidade=?, descricao=?, valorProduto=? "
                 + " WHERE (idProduto=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
-            stmt.setInt(2, produto.getCodigo());
-            stmt.setString(3, produto.getTipo());
-            stmt.setInt(4, produto.getQuantidade());
-            stmt.setString(5, produto.getDescricao());
-            stmt.setDouble(6, produto.getValor());
+            stmt.setString(2, produto.getTipo());
+            stmt.setInt(3, produto.getQuantidade());
+            stmt.setString(4, produto.getDescricao());
+            stmt.setDouble(5, produto.getValor());
 
             stmt.execute();
 

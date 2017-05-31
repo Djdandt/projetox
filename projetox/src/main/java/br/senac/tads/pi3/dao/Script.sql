@@ -86,13 +86,12 @@ create table Relatorio(
 );
 
 create table ProdutosExcluidos(
-    idProduto INT NOT NULL,
+    idExclusao INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     nomeProduto VARCHAR(50) NOT NULL,
     quantidade INT NOT NULL,
     valorProduto DOUBLE NOT NULL,
     excluidoPor VARCHAR(50) NOT NULL,
-    dataExclusao TIMESTAMP NOT NULL,
-    FOREIGN KEY (idProduto) References Produto(idProduto)
+    dataExclusao TIMESTAMP NOT NULL
 );
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),

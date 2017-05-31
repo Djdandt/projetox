@@ -22,6 +22,7 @@
         <script type="text/javascript" src="js/cpf.js" ></script>
         <script type="text/javascript" src="js/telefone.js" ></script>
         <script type="text/javascript" src="js/telefone2.js" ></script>
+        <!--<script type="text/javascript" src="js/verificaCampos.js" ></script>-->
 
     </head>
     <body>
@@ -52,7 +53,7 @@
                 <li><a href="#">Consultar</a>
                     <ul>
                         <li><a href="clientes">Cliente</a></li>
-                        <li><a href="estoque">Produto</a></li>
+<!--                        <li><a href="estoque">Produto</a></li>-->
                         <li><a href="funcionarios">Funcionário</a></li>
                     </ul>   
                 </li>   
@@ -85,7 +86,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                            <input  name="nome" placeholder="Nome" required class="form-control" maxlength="50" type="text">
+                                            <input id="nomeProduto" name="nome" required placeholder="Nome" class="form-control" maxlength="50" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -119,10 +120,10 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="tipo" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o tipo..</option>
-                                                <option value="bolsa">Bolsa</option>
-                                                <option value="relogio">Relógio</option>
-                                                <option value="oculos">Óculos</option>
-                                                <option value="bone">Boné</option>
+                                                <option value="Bolsa">Bolsa</option>
+                                                <option value="Relogio">Relógio</option>
+                                                <option value="Oculos">Óculos</option>
+                                                <option value="Bone">Boné</option>
                                             </select>
                                         </div>
                                     </div>
@@ -162,7 +163,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="submit" id="btnCadastro" value="Cadastrar" onclick="return validar()" />
                                 <input type="hidden" name="funcio" value="${sessionScope.usuario.nomeCompleto}"/>
                             </div>
                         </div>
@@ -252,7 +253,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                            <input name="email" required placeholder="E-mail" class="form-control"  type="text">
+                                            <input id="email" name="email" required placeholder="E-mail" class="form-control"  type="email">
                                         </div>
                                     </div>
                                 </div>
@@ -373,7 +374,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="submit" id="btnCadastro" value="Cadastrar" onclick="return validar()"/>
                             </div>
                         </div>
 
@@ -448,7 +449,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                            <input name="email" required placeholder="E-mail" class="form-control"  type="text">
+                                            <input id="email" name="email" required placeholder="E-mail" class="form-control"  type="email">
                                         </div>
                                     </div>
                                 </div>
