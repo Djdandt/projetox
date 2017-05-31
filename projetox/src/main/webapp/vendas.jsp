@@ -42,6 +42,19 @@
                                 <!-- Text input-->
 
                                 <div class="form-group"> 
+                                    <label class="col-md-4 control-label">Cliente</label>
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group ">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                            <input name="pesquisaCliente" class="form-control" id="search" type="text" placeholder="Pesquisar Cliente" required >
+                                        </div>
+                                    </div>
+                                     <button class="btn btn-primary" type="submit">
+                                                    <span class="glyphicon glyphicon-search"></span>
+                                                </button>
+                                </div>
+
+                                <div class="form-group"> 
                                     <label class="col-md-4 control-label">Nome do Produto</label>
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">

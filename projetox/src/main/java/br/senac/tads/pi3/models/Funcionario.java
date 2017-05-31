@@ -59,6 +59,19 @@ public class Funcionario {
         this.login = login;
         this.senha = senha;
     }
+    public Funcionario(int id, String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo, String login) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.cargo = cargo;
+        this.login = login;
+    }
 
     public int getId() {
         return id;

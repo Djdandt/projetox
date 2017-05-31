@@ -25,30 +25,32 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h2>Funcionários Cadastrados</h2>
-                    <a class="btn btn-default" style="float: right" href="menu">Voltar</a>
-                    <table class="table">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
-                            <th>Cargo</th>
-                            <th>Login</th>
-                        </tr>
-                        <c:forEach items="${listaFuncionarios}" var="funcionario">
+                    <form method="post" action="AltDelProduto" class="form-inline">
+                        <table class="table">
                             <tr>
-                                <td><c:out value="${funcionario.id}" /></td>
-                                <td><c:out value="${funcionario.nome}" /></td>
-                                <td><c:out value="${funcionario.email}" /></td>
-                                <td><c:out value="${funcionario.telefone}" /></td>
-                                <td><c:out value="${funcionario.cargo}" /></td>
-                                <td><c:out value="${funcionario.login}" /></td>
-                                <td id="alterar"><a href="#" class="btn btn-warning">Alterar</a></td>
-
-                                <td id="excluir"><a href="#" class="btn btn-danger">Excluir</a></td>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Telefone</th>
+                                <th>Cargo</th>
+                                <th>Login</th>
                             </tr>
-                        </c:forEach>
-                    </table>
+                            <c:forEach items="${listaFuncionarios}" var="funcionario">
+                                <tr>
+                                    <td><c:out value="${funcionario.id}" /></td>
+                                    <td><c:out value="${funcionario.nome}" /></td>
+                                    <td><c:out value="${funcionario.email}" /></td>
+                                    <td><c:out value="${funcionario.telefone}" /></td>
+                                    <td><c:out value="${funcionario.cargo}" /></td>
+                                    <td><c:out value="${funcionario.login}" /></td>
+                                    
+                                    <td id="alterar"><a href="#" class="btn btn-warning">Alterar</a></td>
+
+                                    <td id="excluir"><a href="#" class="btn btn-danger">Excluir</a></td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>

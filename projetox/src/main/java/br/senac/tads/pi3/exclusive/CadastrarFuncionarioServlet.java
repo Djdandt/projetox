@@ -7,6 +7,7 @@ package br.senac.tads.pi3.exclusive;
 
 import br.senac.tads.pi3.dao.FuncionarioDAO;
 import br.senac.tads.pi3.models.Funcionario;
+import br.senac.tads.pi3.models.UsuarioSistema;
 import java.io.IOException;
 import java.sql.Date;
 import javax.servlet.RequestDispatcher;
@@ -78,6 +79,12 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
             dao.incluirComTransacao(novo);
 
             HttpSession sessao = request.getSession();
+//            UsuarioSistema usuario = new UsuarioSistema();
+//            usuario.setUsuario(cargo);
+//            usuario.setSenha(cargo);
+//            usuario.setNomeCompleto(cargo);
+//            usuario.setPapeis(cargo);
+            
             sessao.setAttribute("novoFuncionario", novo);
             response.sendRedirect("funcionarioCadastrado.jsp");
         } else {

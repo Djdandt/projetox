@@ -25,7 +25,7 @@ import javax.servlet.http.HttpSession;
  * @author Vinicius Ferreira Batista
  */
 @WebServlet(name = "AltDelProduto", urlPatterns = {"/AltDelProduto"})
-public class AltDelProduto extends HttpServlet {
+public class AltDelProdutoServlet extends HttpServlet {
 
     /**
      * Neste exemplo, somente apresenta a tela do formulário
@@ -43,11 +43,17 @@ public class AltDelProduto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ProdutoDAO produto = new ProdutoDAO();
+        Produto envia = produto.obterProduto(Integer.parseInt(request.getParameter("idProduto")));
+        request.setAttribute("prod", envia);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("alterarProd.jsp");
+        dispatcher.forward(request, response);
 
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(AltDelProduto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AltDelProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -70,8 +76,6 @@ public class AltDelProduto extends HttpServlet {
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
         double valor = Double.parseDouble(request.getParameter("valor"));
         String funcionario = request.getParameter("funcio");
-        String descricao = request.getParameter("descricao");
-        String tipo = request.getParameter("tipo");
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
@@ -87,25 +91,25 @@ public class AltDelProduto extends HttpServlet {
                 sessao.setAttribute("excluindo", nome);
                 response.sendRedirect("resultado_1.jsp");
 
-            } else if (request.getParameter("alterar") != null) {
-               
-                Produto produto = new Produto();
-                produto.setNome(nome);
-                produto.setQuantidade(quantidade);
-                produto.setValor(valor);
-                produto.setDescricao(descricao);
-                produto.setTipo(tipo);
-                
-                ProdutoDAO dao = new ProdutoDAO();
-//                dao.atualizarProduto(produto);
-                response.sendRedirect("alterarProd.jsp");
-
             }
+//            else if (request.getParameter("alterar") != null) {
+//                
+//                  Produto prod = new Produto();
+//                  prod.setNome(request.getParameter("nome"));
+//                  prod.setValor(Double.parseDouble(request.getParameter("valor")));
+//                  prod.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+//                  prod.setDescricao(request.getParameter("descricao"));
+//                  ProdutoDAO dao = new ProdutoDAO();
+//                  dao.atualizarProduto(prod);
+//                  
+//                  response.sendRedirect("alterarProd.jsp");
+//               
+//            }
 
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.
-            RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("alterarProd.jsp");
             dispatcher.forward(request, response);
         }
     }

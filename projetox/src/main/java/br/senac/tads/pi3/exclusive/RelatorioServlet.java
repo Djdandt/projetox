@@ -32,12 +32,8 @@ public class RelatorioServlet extends HttpServlet {
 
         ProdutoDAO dao = new ProdutoDAO();
         List<Produto> produtos;
-        try {
-            produtos = dao.listar();
-            request.setAttribute("listaProdutos", produtos);
-        } catch (Exception ex) {
-            Logger.getLogger(RelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        produtos = dao.listar();
+        request.setAttribute("listaProdutos", produtos);
 
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("relatorio.jsp");

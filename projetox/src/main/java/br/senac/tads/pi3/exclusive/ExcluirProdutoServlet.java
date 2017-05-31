@@ -8,6 +8,10 @@ package br.senac.tads.pi3.exclusive;
 import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +22,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author vinicius.fbatista1
+ * @author Vinicius Ferreira Batista
  */
-@WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/alterarProd"})
-public class AlterarProdutoServlet extends HttpServlet {
+@WebServlet(name = "ExcluirProdutoServlet", urlPatterns = {"/ExcluirProdutoServlet"})
+public class ExcluirProdutoServlet extends HttpServlet {
 
     /**
      * Neste exemplo, somente apresenta a tela do formulário
@@ -31,12 +35,24 @@ public class AlterarProdutoServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException, SQLException {
+
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher
-                = request.getRequestDispatcher("alterarProd.jsp");
+        ProdutoDAO produto = new ProdutoDAO();
+
+        produto.excluirProduto((Integer.parseInt(request.getParameter("idProduto"))));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("estoque");
         dispatcher.forward(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(ExcluirProdutoServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -50,28 +66,44 @@ public class AlterarProdutoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession sessao = request.getSession();
+        request.setAttribute("usuarioLogado", sessao.getAttribute("usuarioLogado"));
         boolean erro = false;
 
-//        int id = Integer.parseInt(request.getParameter("idProduto"));
         String nome = request.getParameter("nome");
-        request.setAttribute("nome", nome);
-
-        String tipo = request.getParameter("tipo");
         int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-        String descricao = request.getParameter("descricao");
         double valor = Double.parseDouble(request.getParameter("valor"));
-        
+        String funcionario = request.getParameter("funcio");
 
         if (!erro) {
             // Os dados foram preenchidos corretamente
             // Faz o fluxo POST-REDIRECT-GET para a tela de resultados
-            Produto novo = new Produto(nome, quantidade, valor, descricao, tipo);
 
-            ProdutoDAO dao = new ProdutoDAO();
-            dao.atualizarProduto(novo);
+            if (request.getParameter("excluir") != null) {
+                ProdutoDAO dao = new ProdutoDAO();
+                int id = Integer.parseInt(request.getParameter("excluir"));
+                Produto novo = new Produto(id, nome, quantidade, valor, funcionario, new Date());
+                dao.adicionarExclusao(novo);
+                dao.excluirProduto(id);
 
-            HttpSession sessao = request.getSession();
-            response.sendRedirect("estoque");
+                sessao.setAttribute("excluindo", nome);
+                response.sendRedirect("resultado_1.jsp");
+
+            }
+//            else if (request.getParameter("alterar") != null) {
+//                
+//                  Produto prod = new Produto();
+//                  prod.setNome(request.getParameter("nome"));
+//                  prod.setValor(Double.parseDouble(request.getParameter("valor")));
+//                  prod.setQuantidade(Integer.parseInt(request.getParameter("quantidade")));
+//                  prod.setDescricao(request.getParameter("descricao"));
+//                  ProdutoDAO dao = new ProdutoDAO();
+//                  dao.atualizarProduto(prod);
+//                  
+//                  response.sendRedirect("alterarProd.jsp");
+//               
+//            }
+
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.

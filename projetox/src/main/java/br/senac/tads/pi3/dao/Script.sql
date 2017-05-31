@@ -28,15 +28,15 @@ create table Cliente (
     nomeCliente VARCHAR(50) NOT NULL,
     sobrenomeCliente VARCHAR(50) NOT NULL,
     dataNasc DATE NOT NULL,
-    cpfCliente VARCHAR(11) NOT NULL UNIQUE,
+    cpfCliente VARCHAR(14) NOT NULL UNIQUE,
     emailCliente VARCHAR(50) NOT NULL,
-    telefoneCliente VARCHAR(50) NOT NULL,
-    estadoCliente VARCHAR(50) NOT NULL,
-    cidadeCliente VARCHAR(50) NOT NULL,
-    enderecoCliente VARCHAR(50) NOT NULL,
-    cepCliente VARCHAR(50) NOT NULL,
+    telefoneCliente VARCHAR(14) NOT NULL,
+    estadoCliente VARCHAR(50),
+    cidadeCliente VARCHAR(50),
+    enderecoCliente VARCHAR(50),
+    cepCliente VARCHAR(50),
     numCasa INT NOT NULL,
-    generoCliente VARCHAR(50) NOT NULL
+    generoCliente VARCHAR(50)
 );
 
 create table Funcionario (
@@ -45,11 +45,11 @@ create table Funcionario (
   nomeFuncionario VARCHAR(50) NOT NULL,
   sobrenomeFuncionario VARCHAR(50) NOT NULL,
   dataNasc DATE NOT NULL,
-  cpfFuncionario VARCHAR(11) NOT NULL UNIQUE,
+  cpfFuncionario VARCHAR(14) NOT NULL UNIQUE,
   emailFuncionario VARCHAR(50) NOT NULL,
-  telefoneFuncionario VARCHAR(50) NOT NULL,
-  estadoFuncionario VARCHAR(50) NOT NULL,
-  cidadeFuncionario VARCHAR(50) NOT NULL,
+  telefoneFuncionario VARCHAR(14) NOT NULL,
+  estadoFuncionario VARCHAR(50),
+  cidadeFuncionario VARCHAR(50),
   cargo VARCHAR(50) NOT NULL,
   login VARCHAR(20) NOT NULL,
   senha VARCHAR(20) NOT NULL
@@ -86,13 +86,12 @@ create table Relatorio(
 );
 
 create table ProdutosExcluidos(
-    idProduto INT NOT NULL,
+    idExclusao INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     nomeProduto VARCHAR(50) NOT NULL,
     quantidade INT NOT NULL,
     valorProduto DOUBLE NOT NULL,
     excluidoPor VARCHAR(50) NOT NULL,
-    dataExclusao TIMESTAMP NOT NULL,
-    FOREIGN KEY (idProduto) References Produto(idProduto)
+    dataExclusao TIMESTAMP NOT NULL
 );
 -- create table VendaProd(
 --    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),

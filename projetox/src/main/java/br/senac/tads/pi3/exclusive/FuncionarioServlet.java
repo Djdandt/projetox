@@ -29,9 +29,9 @@ public class FuncionarioServlet extends HttpServlet {
             throws ServletException {
 
         FuncionarioDAO dao = new FuncionarioDAO();
-        List<Funcionario> funcionarios = dao.listar();
+        List<Funcionario> funcionario = dao.listar();
 
-        request.setAttribute("listaFuncionarios", funcionarios);
+        request.setAttribute("listaFuncionarios", funcionario);
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("funcionarios.jsp");
         try {
