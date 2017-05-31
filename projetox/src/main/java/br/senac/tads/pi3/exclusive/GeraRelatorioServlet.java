@@ -134,6 +134,8 @@ public class GeraRelatorioServlet extends HttpServlet {
             }
         } catch (IOException | ServletException e) {
             System.out.println(e);
+        } catch (Exception ex) {
+            Logger.getLogger(GeraRelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

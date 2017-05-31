@@ -9,6 +9,8 @@ import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,21 +25,26 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "RelatorioServlet", urlPatterns = {"/relatorio"})
 public class RelatorioServlet extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest request,
-	  HttpServletResponse response)
-	  throws ServletException {
+    @Override
+    public void doGet(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException {
 
-    ProdutoDAO dao = new ProdutoDAO();
-    List<Produto> produtos = dao.listar();
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> produtos;
+        try {
+            produtos = dao.listar();
+            request.setAttribute("listaProdutos", produtos);
+        } catch (Exception ex) {
+            Logger.getLogger(RelatorioServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-    request.setAttribute("listaProdutos", produtos);
-    RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("relatorio.jsp");
-    try {
-      dispatcher.forward(request, response);
-    } catch (IOException ex) {
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher("relatorio.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (IOException ex) {
 
+        }
     }
-  }
 }

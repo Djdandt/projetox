@@ -32,6 +32,16 @@ public class Produto {
 
     }
 
+    public Produto(String nome, int quantidade, double valor, String descricao, String tipo) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.valor = valor;
+        this.descricao = descricao;
+        this.tipo = tipo;
+    }
+    
+    
+
     public Produto(String nome, int codigo, String tipo, int quantidade, String descricao, double valor) {
         this.nome = nome;
         this.codigo = codigo;

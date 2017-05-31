@@ -29,7 +29,7 @@ public class FuncionarioDAO extends ConexaoBD {
         Funcionario f = null;
 
         String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc,"
-                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo "
+                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo, login, senha "
                 + "FROM Funcionario WHERE idFuncionario = ?";
 
         try {
@@ -49,7 +49,9 @@ public class FuncionarioDAO extends ConexaoBD {
                 String estado = resultados.getString("estadoFuncionario");
                 String cidade = resultados.getString("cidadeFuncionario");
                 String cargo = resultados.getString("cargo");
-                f = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, estado, cidade, cargo);
+                String login = resultados.getString("login");
+                String senha = resultados.getString("senha");
+                f = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone, estado, cidade, cargo, login, senha);
                 break;
             }
         } catch (SQLException ex) {
@@ -84,7 +86,7 @@ public class FuncionarioDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "SELECT idFuncionario, nomeFuncionario, sobrenomeFuncionario, dataNasc,"
-                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo "
+                + " cpfFuncionario, emailFuncionario, telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo, login "
                 + "FROM Funcionario";
 
         List<Funcionario> lista = new ArrayList<>();
@@ -105,9 +107,11 @@ public class FuncionarioDAO extends ConexaoBD {
                 String estado = resultados.getString("estadoFuncionario");
                 String cidade = resultados.getString("cidadeFuncionario");
                 String cargo = resultados.getString("cargo");
+                String login = resultados.getString("login");
+                String senha = resultados.getString("senha");
 
                 Funcionario funcionario = new Funcionario(id, nome, sobrenome, dataNasc, cpf, email, telefone,
-                        estado, cidade, cargo);
+                        estado, cidade, cargo, login, senha);
                 lista.add(funcionario);
             }
 
@@ -143,8 +147,8 @@ public class FuncionarioDAO extends ConexaoBD {
 
         String sql = "INSERT INTO Funcionario "
                 + "(nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario,"
-                + "telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo, login, senha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
 
@@ -159,6 +163,8 @@ public class FuncionarioDAO extends ConexaoBD {
             stmt.setString(7, funcionario.getEstado());
             stmt.setString(8, funcionario.getCidade());
             stmt.setString(9, funcionario.getCargo());
+            stmt.setString(10, funcionario.getLogin());
+            stmt.setString(11, funcionario.getSenha());
 
             stmt.executeUpdate();
 
@@ -217,8 +223,8 @@ public class FuncionarioDAO extends ConexaoBD {
 
         String sql = "INSERT INTO Funcionario "
                 + "(nomeFuncionario, sobrenomeFuncionario, dataNasc, cpfFuncionario, emailFuncionario,"
-                + "telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "telefoneFuncionario, estadoFuncionario, cidadeFuncionario, cargo, login, senha) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -231,6 +237,8 @@ public class FuncionarioDAO extends ConexaoBD {
             stmt.setString(7, funcionario.getEstado());
             stmt.setString(8, funcionario.getCidade());
             stmt.setString(9, funcionario.getCargo());
+            stmt.setString(10, funcionario.getLogin());
+            stmt.setString(11, funcionario.getSenha());
             stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 
