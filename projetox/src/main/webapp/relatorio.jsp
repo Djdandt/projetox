@@ -24,7 +24,7 @@
     </head>
     <body>
 
-        
+
         <div class="logado">
             <c:import url="./cabecalho.jsp" />
         </div>
@@ -38,7 +38,8 @@
                         <option value="listarProdutos" selected="selected">Listar Produtos</option>
                         <option value="listarProdutosExcluidos">Listar Produtos Excluídos</option>
                         <option value="listarFuncionarios">Listar Funcionários</option>
-                        <option value="listarClientes">Listar Clientes</option>                      
+                        <option value="listarClientes">Listar Clientes</option>
+                        <option value="listarVendas">Listar Vendas</option>  
                     </select>
                 </div>
                 <a class="btn btn-info" style="float: right" href="menu">Voltar</a>
@@ -70,6 +71,7 @@
                     </c:forEach>                                                           
                 </table>                                      
             </c:if>
+            
             <c:if test = "${relatorio == 'Relatorio de produtos excluidos!!'}">
                 <table class="table" border="3">
                     <tr>
@@ -93,6 +95,7 @@
                     </c:forEach>                                                           
                 </table>                                      
             </c:if>
+            
             <c:if test = "${relatorio == 'Relatorio de funcionarios cadastrados!!'}">
                 <table class="table" border="3">
                     <tr>
@@ -114,6 +117,7 @@
                     </c:forEach>                                                           
                 </table>                                      
             </c:if>
+            
             <c:if test = "${relatorio == 'Relatorio de clientes cadastrados!!'}">
                 <table class="table" border="3">
                     <tr>
@@ -133,6 +137,30 @@
                             <td>${rel.dataNasc}</td>
                             <td>${rel.cpf}</td>
                             <td>${rel.email}</td>
+                        </tr>
+                    </c:forEach>                                                           
+                </table>                                      
+            </c:if>
+            
+            <c:if test = "${relatorio == 'Relatorio de vendas cadastrados!!'}">
+                <table class="table" border="3">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOME</th>
+                        <th>PRODUTO</th>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                    </tr>
+
+                    <c:forEach items="${relatoriovendas}" var="rel">
+                        <tr>
+                            <td>${rel.id}</td>
+                            <td>${rel.nome}</td>
+                            <td>${rel.produto}</td>
+                            <td>${rel.venda}</td>
+                            <td>${rel.quantidade}</td>
+                            <td>${rel.valorFinal}</td>
                         </tr>
                     </c:forEach>                                                           
                 </table>                                      

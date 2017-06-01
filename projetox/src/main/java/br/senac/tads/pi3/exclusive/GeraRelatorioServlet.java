@@ -8,9 +8,11 @@ package br.senac.tads.pi3.exclusive;
 import br.senac.tads.pi3.dao.ClienteDAO;
 import br.senac.tads.pi3.dao.FuncionarioDAO;
 import br.senac.tads.pi3.dao.ProdutoDAO;
+import br.senac.tads.pi3.dao.VendasDAO;
 import br.senac.tads.pi3.relatorios.RelatorioCliente;
 import br.senac.tads.pi3.relatorios.RelatorioFuncionario;
 import br.senac.tads.pi3.relatorios.RelatorioProduto;
+import br.senac.tads.pi3.relatorios.RelatorioVenda;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -126,6 +128,21 @@ public class GeraRelatorioServlet extends HttpServlet {
                     //Setando os valores que serao resgatados pela JSP
                     request.setAttribute("relatorio", "Relatorio de clientes cadastrados!!");
                     request.setAttribute("relatorioclientes", relatorioCliente.getRelatorioClientes());
+                    
+                    //Enviando os valores para a JSP
+                    this.getServletContext().getRequestDispatcher("/relatorio.jsp").forward(request, response);
+                    break;
+                }
+                
+                case "listarVendas": {
+                    VendasDAO vendas = new VendasDAO();
+                    
+                    //A lista que ira retornar do metodo sera usado na criacao de uma nova classe
+                    RelatorioVenda relatorioVenda = new RelatorioVenda(vendas.listar()); 
+                    
+                    //Setando os valores que serao resgatados pela JSP
+                    request.setAttribute("relatorio", "Relatorio de vendas cadastrados!!");
+                    request.setAttribute("relatoriovendas", relatorioVenda.getRelatorioVendas());
                     
                     //Enviando os valores para a JSP
                     this.getServletContext().getRequestDispatcher("/relatorio.jsp").forward(request, response);
