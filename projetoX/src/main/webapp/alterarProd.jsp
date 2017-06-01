@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="br.senac.tads.pi3.models.Produto" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,10 +26,12 @@
         <script src="js/index.js"></script>
 
 
-        <title>Cadastro de Produtos</title>
+        <title>Alterar Produto</title>
     </head>
     <body>
-        
+        <%
+            Produto prod = (Produto) request.getAttribute("prod");
+        %>
         <div class="logado">
             <c:import url="cabecalho.jsp" />
         </div>
@@ -37,11 +40,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="cadastrarProduto" method="post"  id="form_cadastro">
+                <form class="form-horizontal" action="alterarProd" method="post" id="form_cadastro">
 
                     <center>
                         <div class="register-block">
-                            <h2 style="margin-bottom: 25px"> Cadastro de Produtos </h2>
+                            <h2 style="margin-bottom: 25px">Alterar Produto</h2>
 
                             <!-- Form Name -->
 
@@ -54,10 +57,20 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-tag"></i></span>
-                                            <input  name="nome" placeholder="Nome" class="form-control"  type="text">
+                                            <input  name="nome" placeholder="Nome" class="form-control"  type="text" value="<%=prod.getNome()%>">
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" >Código</label> 
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span>
+                                            <input name="codigo" placeholder="Codigo" class="form-control"  type="text" value="<%=prod.getCodigo()%>" readonly="true">
+                                        </div>
+                                    </div>
+                                </div> 
 
                                 <!-- Text input-->
 
@@ -66,22 +79,22 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                            <input name="valor" placeholder="Valor" class="form-control"  type="text">
+                                            <input name="valor" placeholder="Valor" class="form-control"  type="text" value="<%=prod.getValor()%>">
                                         </div>
                                     </div>
                                 </div>
-
+                                        
                                 <div class="form-group"> 
                                     <label class="col-md-4 control-label">Tipo</label>
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="tipo" class="form-control selectpicker">
-                                                <option value="" disabled selected>Selecione o tipo..</option>
-                                                <option value="bolsa">Bolsa</option>
-                                                <option value="relogio">Relógio</option>
-                                                <option value="oculos">Óculos</option>
-                                                <option value="bone">Boné</option>
+                                            <select name="tipo" class="form-control selectpicker">
+                                                <option value="<%=prod.getTipo()%>" selected>${prod.tipo}</option>
+                                                <option value="Bolsa">Bolsa</option>
+                                                <option value="Relogio">Relógio</option>
+                                                <option value="Oculos">Óculos</option>
+                                                <option value="Bone">Boné</option>
                                             </select>
                                         </div>
                                     </div>
@@ -93,22 +106,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group"> 
-                                    <label class="col-md-4 control-label">Filial</label>
-                                    <div class="col-md-4 selectContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="filial" class="form-control selectpicker">
-                                                <option value="" disabled selected>Selecione a filial</option>
-                                                <option value="bolsa">São Paulo</option>
-                                                <option value="relogio">Minas Gerais</option>
-                                                <option value="oculos">Amazonas</option>
-                                            </select>
+                                            <input name="quantidade" placeholder="Quantidade" class="form-control" type="number" value="<%=prod.getQuantidade()%>">
                                         </div>
                                     </div>
                                 </div>
@@ -120,7 +118,7 @@
                                     <div class="col-md-4 inputGroupContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-edit"></i></span>
-                                            <textarea rows="6" style="width: 15em; resize: none;" id="txtdescricao" name="descricao"></textarea>
+                                            <textarea rows="6" style="width: 15em; resize: none;" id="txtdescricao" name="descricao" value="<%=prod.getDescricao()%>"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -135,7 +133,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="submit" id="btnCadastro" value="Alterar" />
                             </div>
                         </div>
 

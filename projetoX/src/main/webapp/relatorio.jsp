@@ -24,7 +24,7 @@
     </head>
     <body>
 
-        
+
         <div class="logado">
             <c:import url="./cabecalho.jsp" />
         </div>
@@ -36,8 +36,10 @@
                     <label class="input-group-addon" style="width:110px;"for="tipoRelatorio">Tipo:</label>
                     <select name="tipoRelatorio" class="form-control">
                         <option value="listarProdutos" selected="selected">Listar Produtos</option>
+                        <option value="listarProdutosExcluidos">Listar Produtos Excluídos</option>
                         <option value="listarFuncionarios">Listar Funcionários</option>
-                        <option value="listarClientes">Listar Clientes</option>                      
+                        <option value="listarClientes">Listar Clientes</option>
+                        <option value="listarVendas">Listar Vendas</option>  
                     </select>
                 </div>
                 <a class="btn btn-info" style="float: right" href="menu">Voltar</a>
@@ -51,26 +53,49 @@
                     <tr>
                         <th>ID</th>
                         <th>NOME</th>
-                        <th>CODIGO</th>
-                        <th>TIPO</th>
                         <th>QUANTIDADE</th>
-                        <th>DESCRICAO</th>
-                        <th>VALOR</th>
+                        <th>Valor</th>
+                        <th>Cadastrado Por</th>
+                        <th>Data</th>
                     </tr>
 
                     <c:forEach items="${relatorioprodutos}" var="rel">
                         <tr>
                             <td>${rel.id}</td>
                             <td>${rel.nome}</td>
-                            <td>${rel.codigo}</td>
-                            <td>${rel.tipo}</td>
                             <td>${rel.quantidade}</td>
-                            <td>${rel.descricao}</td>
                             <td>${rel.valor}</td>
+                            <td>${rel.funcio}</td>
+                            <td>${rel.dataCadastro}</td>
                         </tr>
                     </c:forEach>                                                           
                 </table>                                      
             </c:if>
+            
+            <c:if test = "${relatorio == 'Relatorio de produtos excluidos!!'}">
+                <table class="table" border="3">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOME</th>
+                        <th>QUANTIDADE</th>
+                        <th>Valor</th>
+                        <th>Excluido Por</th>
+                        <th>Data</th>
+                    </tr>
+
+                    <c:forEach items="${relatorioprodutos}" var="rel">
+                        <tr>
+                            <td>${rel.id}</td>
+                            <td>${rel.nome}</td>
+                            <td>${rel.quantidade}</td>
+                            <td>${rel.valor}</td>
+                            <td>${rel.funcio}</td>
+                            <td>${rel.dataExclusao}</td>
+                        </tr>
+                    </c:forEach>                                                           
+                </table>                                      
+            </c:if>
+            
             <c:if test = "${relatorio == 'Relatorio de funcionarios cadastrados!!'}">
                 <table class="table" border="3">
                     <tr>
@@ -92,6 +117,7 @@
                     </c:forEach>                                                           
                 </table>                                      
             </c:if>
+            
             <c:if test = "${relatorio == 'Relatorio de clientes cadastrados!!'}">
                 <table class="table" border="3">
                     <tr>
@@ -111,6 +137,30 @@
                             <td>${rel.dataNasc}</td>
                             <td>${rel.cpf}</td>
                             <td>${rel.email}</td>
+                        </tr>
+                    </c:forEach>                                                           
+                </table>                                      
+            </c:if>
+            
+            <c:if test = "${relatorio == 'Relatorio de vendas cadastrados!!'}">
+                <table class="table" border="3">
+                    <tr>
+                        <th>ID</th>
+                        <th>NOME</th>
+                        <th>PRODUTO</th>
+                        <th>DATA</th>
+                        <th>QUANTIDADE</th>
+                        <th>VALOR</th>
+                    </tr>
+
+                    <c:forEach items="${relatoriovendas}" var="rel">
+                        <tr>
+                            <td>${rel.id}</td>
+                            <td>${rel.nome}</td>
+                            <td>${rel.produto}</td>
+                            <td>${rel.venda}</td>
+                            <td>${rel.quantidade}</td>
+                            <td>${rel.valorFinal}</td>
                         </tr>
                     </c:forEach>                                                           
                 </table>                                      

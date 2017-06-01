@@ -4,6 +4,7 @@
     Author     : Vinicius Ferreira Batista
 --%>
 
+<%@page import="br.senac.tads.pi3.models.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -27,53 +28,60 @@
 
 
     </head>
-    <div class="logado">
-        <c:import url="cabecalho.jsp" />
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>Produtos Cadastrados</h2>
-                <form method="post" action="AltDelProduto" class="form-inline">
-                    <table class="table">
-                        <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Codigo</th>
-                            <th>Tipo</th>
-                            <th>Qtde</th>
-                            <th>Valor</th>
-                        </tr>
-                        <c:forEach items="${listaProdutos}" var="produto">
+    <body>
+
+        <%
+            Produto prod = (Produto) request.getAttribute("prod");
+        %>
+
+        <div class="logado">
+            <c:import url="cabecalho.jsp" />
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2>Produtos Cadastrados</h2>
+                    <form method="post" action="AltDelProduto" class="form-inline">
+                        <table class="table">
                             <tr>
-
-                                <td><c:out value="${produto.id}" /></td>
-                                <td><c:out value="${produto.nome}" /></td>
-                                <td><c:out value="${produto.codigo}" /></td>
-                                <td><c:out value="${produto.tipo}" /></td>
-                                <td><c:out value="${produto.quantidade}" /></td>
-                                <td><c:out value="${produto.valor}" /></td>
-
-                                <td id="alterar"><input type="submit" name="alterar" value="Alterar" class="btn btn-warning" onclick="value =${produto.id}"></td>
-                                <td id="excluir"><input type="submit" name="excluir" value="Excluir" class="btn btn-danger" onclick="value =${produto.id};"></td>
-
-
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Codigo</th>
+                                <th>Tipo</th>
+                                <th>Qtde</th>
+                                <th>Valor</th>
                             </tr>
-                        </c:forEach>
-                    </table>
-                </form>
+                            <c:forEach items="${listaProdutos}" var="produto">
+                                <tr>
+
+                                    <td><c:out value="${produto.id}" /></td>
+                                    <td><c:out value="${produto.nome}" /></td>
+                                    <td><c:out value="${produto.codigo}" /></td>
+                                    <td><c:out value="${produto.tipo}" /></td>
+                                    <td><c:out value="${produto.quantidade}" /></td>
+                                    <td><c:out value="${produto.valor}" /></td>
+
+                                    <td id="alterar"><a href="AltDelProduto?idProduto=${produto.id}" class="btn btn-warning">Alterar</a></td>
+                                    <td id="excluir"><a href="ExcluirProdutoServlet?idProduto=${produto.id}" class="btn btn-danger">Excluir</a></td>
+                                  
+
+
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-<!--    <script>
-        function clicked(e)
-        {
-            if (!confirm('Você tem certeza que deseja excluir o produto?'))
-                e.preventDefault();
-        }
-    </script>-->
+        <!--    <script>
+                function clicked(e)
+                {
+                    if (!confirm('Você tem certeza que deseja excluir o produto?'))
+                        e.preventDefault();
+                }
+            </script>-->
 
-    <c:import url="./rodape.jsp" />
+        <c:import url="./rodape.jsp" />
 
-</body>
+    </body>
 </html>

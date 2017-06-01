@@ -11,7 +11,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,12 +25,12 @@ import java.util.logging.Logger;
  */
 public class ProdutoDAO extends ConexaoBD {
 
-    public Produto obterProduto(int idProduto) {
+      public Produto obterProduto(int idProduto) {
         PreparedStatement stmt = null;
         Connection conn = null;
         Produto p = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor"
+        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto "
                 + "FROM Produto WHERE idProduto = ?";
 
         try {
@@ -38,12 +41,12 @@ public class ProdutoDAO extends ConexaoBD {
 
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
-                String nome = resultados.getString("Nome");
-                int codigo = resultados.getInt("Codigo");
-                String tipo = resultados.getString("Tipo");
-                int quantidade = resultados.getInt("Quantidade");
-                String descricao = resultados.getString("Descricao");
-                double valor = resultados.getDouble("Valor");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String tipo = resultados.getString("tipoProduto");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
                 p = new Produto(id, nome, codigo, tipo, quantidade, descricao, valor);
                 break;
             }
@@ -78,27 +81,32 @@ public class ProdutoDAO extends ConexaoBD {
         Statement stmt = null;
         Connection conn = null;
 
-        String sql = "SELECT idProduto, Nome, Codigo, Tipo, Quantidade, Descricao, Valor "
-                + "FROM Produto";
+//        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro "
+//                + "FROM Produto";
+        String sql = "SELECT idProduto, nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, "
+                + " dataCadastro FROM Produto WHERE disponivel = 'true' ";
 
         List<Produto> lista = new ArrayList<>();
+
         try {
             conn = obterConexao();
             stmt = conn.createStatement();
             ResultSet resultados = stmt.executeQuery(sql);
+            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
 
-            //     DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
             while (resultados.next()) {
                 int id = resultados.getInt("idProduto");
-                String nome = resultados.getString("Nome");
-                int codigo = resultados.getInt("Codigo");
-                String tipo = resultados.getString("Tipo");
-                int quantidade = resultados.getInt("Quantidade");
-                String descricao = resultados.getString("Descricao");
-                double valor = resultados.getDouble("Valor");
+                String nome = resultados.getString("nomeProduto");
+                int codigo = resultados.getInt("codigo");
+                String tipo = resultados.getString("tipoProduto");
+                int quantidade = resultados.getInt("quantidade");
+                String descricao = resultados.getString("descricao");
+                double valor = resultados.getDouble("valorProduto");
+                String funcionario = resultados.getString("cadastradoPor");
+                Date data = resultados.getDate("dataCadastro");
 
                 Produto produto = new Produto(id, nome, codigo,
-                        tipo, quantidade, descricao, valor);
+                        tipo, quantidade, descricao, valor, funcionario, data);
                 lista.add(produto);
             }
 
@@ -133,8 +141,9 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Produto "
-                + "(Nome, Codigo, Tipo, Quantidade, Descricao, Valor) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+                + "(nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro, disponivel) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try {
             conn = obterConexao();
 
@@ -146,6 +155,9 @@ public class ProdutoDAO extends ConexaoBD {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setString(5, produto.getDescricao());
             stmt.setDouble(6, produto.getValor());
+            stmt.setString(7, produto.getFuncio());
+            stmt.setTimestamp(8, new java.sql.Timestamp(System.currentTimeMillis()));
+            stmt.setBoolean(9, true);
 
             stmt.executeUpdate();
 
@@ -203,8 +215,8 @@ public class ProdutoDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Produto "
-                + "(Nome, Codigo, Tipo, Quantidade, Descricao, Valor) "
-                + "VALUES (?, ?, ?, ?, ?, ?)";
+                + "(nomeProduto, codigo, tipoProduto, quantidade, descricao, valorProduto, cadastradoPor, dataCadastro, disponivel) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -214,6 +226,12 @@ public class ProdutoDAO extends ConexaoBD {
             stmt.setInt(4, produto.getQuantidade());
             stmt.setString(5, produto.getDescricao());
             stmt.setDouble(6, produto.getValor());
+            stmt.setString(7, produto.getFuncio());
+            stmt.setTimestamp(8, new java.sql.Timestamp(System.currentTimeMillis()));
+            stmt.setString(9, produto.getFuncio());
+            stmt.setTimestamp(10, new java.sql.Timestamp(System.currentTimeMillis()));
+            stmt.setBoolean(11, true);
+
             stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 
@@ -244,13 +262,15 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "DELETE FROM Produto WHERE (idProduto=?)";
+        String sql = "UPDATE Produto SET disponivel=? WHERE (idProduto=?)";
 
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, id);
+
+            stmt.setBoolean(1, false);
+            stmt.setInt(2, id);
 
             stmt.execute();
 
@@ -282,18 +302,17 @@ public class ProdutoDAO extends ConexaoBD {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE Produto SET Nome=?, Codigo=?, Tipo=?, Quantidade=?, Descricao=?, Valor=? "
+        String sql = "UPDATE Produto SET nomeProduto=?, tipoProduto=?, quantidade=?, descricao=?, valorProduto=? "
                 + " WHERE (idProduto=?)";
 
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
-            stmt.setInt(2, produto.getCodigo());
-            stmt.setString(3, produto.getTipo());
-            stmt.setInt(4, produto.getQuantidade());
-            stmt.setString(5, produto.getDescricao());
-            stmt.setDouble(6, produto.getValor());
+            stmt.setString(2, produto.getTipo());
+            stmt.setInt(3, produto.getQuantidade());
+            stmt.setString(4, produto.getDescricao());
+            stmt.setDouble(5, produto.getValor());
 
             stmt.execute();
 
@@ -318,6 +337,105 @@ public class ProdutoDAO extends ConexaoBD {
                 }
             }
         }
+    }
+
+    public void adicionarExclusao(Produto produto) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "INSERT INTO ProdutosExcluidos "
+                + "(nomeProduto, quantidade, valorProduto, excluidoPor, dataExclusao) "
+                + "VALUES (?, ?, ?, ?, ?)";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+
+//            Produto produto = new Produto();
+            stmt.setString(1, produto.getNome());
+            stmt.setInt(2, produto.getQuantidade());
+            stmt.setDouble(3, produto.getValor());
+            stmt.setString(4, produto.getFuncio());
+            stmt.setTimestamp(5, new java.sql.Timestamp(System.currentTimeMillis()));
+
+            stmt.execute();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public List<Produto> listarExclusoes() {
+        Statement stmt = null;
+        Connection conn = null;
+
+        String sql = "SELECT idExclusao, nomeProduto, quantidade, valorProduto, excluidoPor, dataExclusao "
+                + "FROM ProdutosExcluidos";
+
+        List<Produto> lista = new ArrayList<>();
+
+        try {
+            conn = obterConexao();
+            stmt = conn.createStatement();
+            ResultSet resultados = stmt.executeQuery(sql);
+            DateFormat formatadorData = new SimpleDateFormat("dd/MM/yyyy");
+
+            while (resultados.next()) {
+                int id = resultados.getInt("idExclusao");
+                String nome = resultados.getString("nomeProduto");
+                int quantidade = resultados.getInt("quantidade");
+                double valor = resultados.getDouble("valorProduto");
+                String funcionario = resultados.getString("excluidoPor");
+                Date data = resultados.getDate("dataExclusao");
+
+                Produto produto = new Produto(id, nome,
+                        quantidade, valor, funcionario, data);
+                lista.add(produto);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            // Código colocado aqui para garantir que a conexão com o banco
+            // seja sempre fechada, independentemente se executado com sucesso
+            // ou erro.
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(ProdutoDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return lista;
     }
 
 }

@@ -8,6 +8,7 @@ package br.senac.tads.pi3.exclusive;
 import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
+import java.util.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,71 +24,70 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "CadastrarProdutoServlet", urlPatterns = {"/cadastrarProduto"})
 public class CadastrarProdutoServlet extends HttpServlet {
 
-  /**
-   * Neste exemplo, somente apresenta a tela do formulário
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
-  @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	  throws ServletException, IOException {
-    RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("cadastrarProduto.jsp");
-    dispatcher.forward(request, response);
-  }
+    /**
+     * Neste exemplo, somente apresenta a tela do formulário
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher("cadastrarProduto.jsp");
+        dispatcher.forward(request, response);
+    }
 
-  /**
-   * Handles the HTTP <code>POST</code> method.
-   *
-   * @param request servlet request
-   * @param response servlet response
-   * @throws ServletException if a servlet-specific error occurs
-   * @throws IOException if an I/O error occurs
-   */
-  @Override
-  protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	  throws ServletException, IOException {
-    boolean erro = false;
+    /**
+     * Handles the HTTP <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        boolean erro = false;
 
-    String nome = request.getParameter("nome");
-    if (nome == null || nome.length() < 1) {
-      erro = true;
-      request.setAttribute("erroNome", true);
+        String nome = request.getParameter("nome");
+        if (nome == null || nome.length() < 1 || nome.equals("")) {
+            erro = true;
+            request.setAttribute("erroNome", true);
+        }
+
+        int codigo = Integer.parseInt(request.getParameter("codigo"));
+
+        String tipo = request.getParameter("tipo");
+        if (tipo == null || tipo.length() < 1) {
+            erro = true;
+            request.setAttribute("erroTipo", true);
+        }
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String descricao = request.getParameter("descricao");
+        double valor = Double.parseDouble(request.getParameter("valor"));
+        String funcionario = request.getParameter("funcio");
+
+        if (!erro) {
+            // Os dados foram preenchidos corretamente
+            // Faz o fluxo POST-REDIRECT-GET para a tela de resultados
+            Produto novo = new Produto(nome, codigo, tipo, quantidade, descricao, valor, funcionario, new Date());
+
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.incluirComTransacao(novo);
+
+            HttpSession sessao = request.getSession();
+            sessao.setAttribute("novoProduto", novo);
+            response.sendRedirect("resultado.jsp");
+        } else {
+            // Tem erro no preenchimento dos dados.
+            // Reapresenta o formulário para o usuário indicando os erros.
+            RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
+            dispatcher.forward(request, response);
+        }
     }
-    
-    int codigo = Integer.parseInt(request.getParameter("codigo"));
-    
- 
-    String tipo = request.getParameter("tipo");
-    if (tipo == null || tipo.length() < 1) {
-      erro = true;
-      request.setAttribute("erroTipo", true);
-    }
-    int quantidade = Integer.parseInt(request.getParameter("quantidade"));
-    String descricao = request.getParameter("descricao");
-    double valor = Double.parseDouble(request.getParameter("valor"));
-    
- 
-    if (!erro) {
-      // Os dados foram preenchidos corretamente
-      // Faz o fluxo POST-REDIRECT-GET para a tela de resultados
-      Produto novo = new Produto(nome, codigo, tipo, quantidade, descricao, valor);
-      
-      ProdutoDAO dao = new ProdutoDAO();
-      dao.incluirComTransacao(novo);
-      
-      HttpSession sessao = request.getSession();
-      sessao.setAttribute("novoProduto", novo);
-      response.sendRedirect("resultado.jsp");
-    } else {
-      // Tem erro no preenchimento dos dados.
-      // Reapresenta o formulário para o usuário indicando os erros.
-      RequestDispatcher dispatcher = request.getRequestDispatcher("cadastrarProduto.jsp");
-      dispatcher.forward(request, response);
-    }
-  }
 
 }

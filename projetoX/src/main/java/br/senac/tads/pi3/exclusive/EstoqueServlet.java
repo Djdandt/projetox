@@ -9,6 +9,8 @@ import br.senac.tads.pi3.dao.ProdutoDAO;
 import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,21 +25,27 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "EstoqueServlet", urlPatterns = {"/estoque"})
 public class EstoqueServlet extends HttpServlet {
 
-  @Override
-  public void doGet(HttpServletRequest request,
-	  HttpServletResponse response)
-	  throws ServletException {
+    @Override
+    public void doGet(HttpServletRequest request,
+            HttpServletResponse response)
+            throws ServletException {
 
-    ProdutoDAO dao = new ProdutoDAO();
-    List<Produto> produtos = dao.listar();
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> produtos;
+        try {
+            produtos = dao.listar();
+            request.setAttribute("listaProdutos", produtos);
 
-    request.setAttribute("listaProdutos", produtos);
-    RequestDispatcher dispatcher
-	    = request.getRequestDispatcher("estoque.jsp");
-    try {
-      dispatcher.forward(request, response);
-    } catch (IOException ex) {
+        } catch (Exception ex) {
+            Logger.getLogger(EstoqueServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher("estoque.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (IOException ex) {
+
+        }
     }
-  }
 }

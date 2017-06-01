@@ -5,11 +5,9 @@
  */
 package br.senac.tads.pi3.exclusive;
 
-import br.senac.tads.pi3.dao.FuncionarioDAO;
-import br.senac.tads.pi3.models.Funcionario;
-import br.senac.tads.pi3.models.UsuarioSistema;
+import br.senac.tads.pi3.dao.ProdutoDAO;
+import br.senac.tads.pi3.models.Produto;
 import java.io.IOException;
-import java.sql.Date;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,10 +18,10 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Vinicius Ferreira Batista
+ * @author vinicius.fbatista1
  */
-@WebServlet(name = "CadastrarFuncionarioServlet", urlPatterns = {"/cadastrarFuncionario"})
-public class CadastrarFuncionarioServlet extends HttpServlet {
+@WebServlet(name = "AlterarProdutoServlet", urlPatterns = {"/alterarProd"})
+public class AlterarProdutoServlet extends HttpServlet {
 
     /**
      * Neste exemplo, somente apresenta a tela do formulário
@@ -37,7 +35,7 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher
-                = request.getRequestDispatcher("funcionarioCadastrado.jsp");
+                = request.getRequestDispatcher("alterarProd.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -54,43 +52,30 @@ public class CadastrarFuncionarioServlet extends HttpServlet {
             throws ServletException, IOException {
         boolean erro = false;
 
+//        int id = Integer.parseInt(request.getParameter("idProduto"));
         String nome = request.getParameter("nome");
-        if (nome == null || nome.length() < 1) {
-            erro = true;
-            request.setAttribute("erroNome", true);
-        }
+        request.setAttribute("nome", nome);
 
-        String sobrenome = request.getParameter("sobrenome");
-        Date dataNasc = Date.valueOf(request.getParameter("dataNasc"));
-        String cpf = request.getParameter("cpf");
-        String email = request.getParameter("email");
-        String telefone = request.getParameter("telefone");
-        String estado = request.getParameter("estado");
-        String cidade = request.getParameter("cidade");
-        String cargo = request.getParameter("cargo");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
+        String tipo = request.getParameter("tipo");
+        int quantidade = Integer.parseInt(request.getParameter("quantidade"));
+        String descricao = request.getParameter("descricao");
+        double valor = Double.parseDouble(request.getParameter("valor"));
+        
+
         if (!erro) {
             // Os dados foram preenchidos corretamente
             // Faz o fluxo POST-REDIRECT-GET para a tela de resultados
-            Funcionario novo = new Funcionario(nome, sobrenome, dataNasc, cpf, email, telefone, estado, cidade, cargo, login, senha);
+            Produto novo = new Produto(nome, quantidade, valor, descricao, tipo);
 
-            FuncionarioDAO dao = new FuncionarioDAO();
-            dao.incluirComTransacao(novo);
+            ProdutoDAO dao = new ProdutoDAO();
+            dao.atualizarProduto(novo);
 
             HttpSession sessao = request.getSession();
-//            UsuarioSistema usuario = new UsuarioSistema();
-//            usuario.setUsuario(cargo);
-//            usuario.setSenha(cargo);
-//            usuario.setNomeCompleto(cargo);
-//            usuario.setPapeis(cargo);
-            
-            sessao.setAttribute("novoFuncionario", novo);
-            response.sendRedirect("funcionarioCadastrado.jsp");
+            response.sendRedirect("estoque");
         } else {
             // Tem erro no preenchimento dos dados.
             // Reapresenta o formulário para o usuário indicando os erros.
-            RequestDispatcher dispatcher = request.getRequestDispatcher("funcionarioCadastrado.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("alterarProd.jsp");
             dispatcher.forward(request, response);
         }
     }

@@ -1,9 +1,3 @@
-<%-- 
-    Document   : vendas
-    Created on : 13/05/2017, 12:13:46
-    Author     : danilo.kwatanabe
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -35,7 +29,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="vendas" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="vendaCadastrada.jsp" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -45,61 +39,65 @@
 
                             <table>
 
-                                <!-- Text input-->
+                        </div>
 
-                                <div class="form-group"> 
-                                    <label class="col-md-4 control-label">Nome do Produto</label>
-                                    <div class="col-md-4 selectContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="nomeProduto" class="form-control selectpicker">
-                                                <option value="" disabled selected>Selecione o produto</option>
-                                                <c:forEach items="${listaVendas}" var="venda">
-                                                    <c:out value="${Vendas.nomeProduto}" />
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
+                        <div class="form-group"> 
+                            <label class="col-md-4 control-label">Nome do Produto</label>
+                            <div class="col-md-4 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select required name="nomeProduto" class="form-control selectpicker">
+                                        <option value="" disabled selected>Selecione o produto</option>
+                                        <c:forEach items="${listaProduto}" var="produto">
+                                            <option value="${produto.nome}">
+                                                <c:out value="${produto.nome}"/>
+                                            </option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="form-group"> 
-                                    <label class="col-md-4 control-label">Nome do cliente</label>
-                                    <div class="col-md-4 selectContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="nomeCliente" class="form-control selectpicker">
-                                                <option value="" disabled selected>Selecione o cliente</option>
-                                                <c:forEach items="${listaVendas}" var="venda">
-                                                    <c:out value="${Vendas.nomeCliente}" />
-                                                </c:forEach>
-                                            </select>
-                                        </div>
-                                    </div>
+                        <div class="form-group"> 
+                            <label class="col-md-4 control-label">Nome do cliente</label>
+                            <div class="col-md-4 selectContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                    <select required name="nomeCliente" class="form-control selectpicker">
+                                        <option value="" disabled selected>Selecione o cliente</option>
+                                        <c:forEach items="${listaCliente}" var="cliente">
+                                            <option value="${cliente.nome}">${cliente.nome}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
+                            </div>
+                        </div>
 
-                                <!-- Text input-->
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Quantidade</label>  
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number">
-                                        </div>
-                                    </div>
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Quantidade</label>  
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                                    <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number" required>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" >Valor final</label> 
-                                    <div class="col-md-4 inputGroupContainer">
-                                        <div class="input-group">
-                                            <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                            <input name="valor" placeholder="Valor" class="form-control"  type="text">
-                                        </div>
-                                    </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" >Valor final</label> 
+                            <div class="col-md-4 inputGroupContainer">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                        <c:forEach items="${listaVendas}" var="venda">
+                                            <c:out value="${vendas.valorFinal}" />
+                                        </c:forEach>
                                 </div>
-                                <!-- Text input-->
+                            </div>
+                        </div>
+                        <!-- Text input-->
 
-                            </table>
+                        </table>
                         </div>
                         <!-- Success message -->
                         <!--<div class="alert alert-success" role="alert" id="success_message">Sucesso <i class="glyphicon glyphicon-thumbs-up"></i> Cadastro Realizado com Sucesso !!.</div>-->
@@ -108,7 +106,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Cadastrar" />
+                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
                             </div>
                         </div>
 

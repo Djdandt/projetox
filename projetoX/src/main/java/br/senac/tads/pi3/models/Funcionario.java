@@ -24,12 +24,14 @@ public class Funcionario {
     private String estado;
     private String cidade;
     private String cargo;
+    private String login;
+    private String senha;
 
     public Funcionario() {
 
     }
 
-    public Funcionario(String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo) {
+    public Funcionario(String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo, String login, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.dataNasc = dataNasc;
@@ -39,9 +41,11 @@ public class Funcionario {
         this.estado = estado;
         this.cidade = cidade;
         this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
     }
 
-    public Funcionario(int id, String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo) {
+    public Funcionario(int id, String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo, String login, String senha) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -52,6 +56,21 @@ public class Funcionario {
         this.estado = estado;
         this.cidade = cidade;
         this.cargo = cargo;
+        this.login = login;
+        this.senha = senha;
+    }
+    public Funcionario(int id, String nome, String sobrenome, Date dataNasc, String cpf, String email, String telefone, String estado, String cidade, String cargo, String login) {
+        this.id = id;
+        this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.dataNasc = dataNasc;
+        this.cpf = cpf;
+        this.email = email;
+        this.telefone = telefone;
+        this.estado = estado;
+        this.cidade = cidade;
+        this.cargo = cargo;
+        this.login = login;
     }
 
     public int getId() {
@@ -134,5 +153,20 @@ public class Funcionario {
         this.cargo = cargo;
     }
 
-   
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
 }
