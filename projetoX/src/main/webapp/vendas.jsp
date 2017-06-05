@@ -49,9 +49,7 @@
                                     <select required name="nomeProduto" class="form-control selectpicker">
                                         <option value="" disabled selected>Selecione o produto</option>
                                         <c:forEach items="${listaProduto}" var="produto">
-                                            <option value="${produto.nome}">
-                                                <c:out value="${produto.nome}"/>
-                                            </option>
+                                            <option value="${produto.nome}">${produto.nome}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -106,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
+                                <input href="menu" type="submit" id="btnCadastro" value="Realizar Venda" />
                             </div>
                         </div>
 

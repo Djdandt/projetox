@@ -29,7 +29,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="vendaCadastrada.jsp" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="carrinho.jsp" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -49,9 +49,7 @@
                                     <select required name="nomeProduto" class="form-control selectpicker">
                                         <option value="" disabled selected>Selecione o produto</option>
                                         <c:forEach items="${listaProduto}" var="produto">
-                                            <option value="${produto.nome}">
-                                                <c:out value="${produto.nome}"/>
-                                            </option>
+                                            <option value="${produto.nome}">${produto.nome}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -69,16 +67,6 @@
                                             <option value="${cliente.nome}">${cliente.nome}</option>
                                         </c:forEach>
                                     </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Data atual</label>  
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                    <input name="dataAtual" class="form-control"  type="date" required>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
+                                <input type="submit" id="btnCadastro" value="Carrinho" />
                             </div>
                         </div>
 

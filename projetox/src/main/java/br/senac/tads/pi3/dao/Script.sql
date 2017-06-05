@@ -93,13 +93,3 @@ create table ProdutosExcluidos(
     excluidoPor VARCHAR(50) NOT NULL,
     dataExclusao TIMESTAMP NOT NULL
 );
--- create table VendaProd(
---    idVendaProd INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
---    idVenda INTEGER NOT NULL,
---    idProduto INTEGER NOT NULL,
---    nomeProduto VARCHAR(50) NOT NULL,
---    Quantidade INT NOT NULL,
---    PRIMARY KEY (idVendaProd),
---    FOREIGN KEY (idVenda) REFERENCES Venda(idVenda),
---    FOREIGN KEY (idProduto) REFERENCES Produto(idProduto)
--- );

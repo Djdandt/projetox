@@ -21,5 +21,9 @@ and open the template in the editor.
 
 #excluir, #alterar{
     width: 5px;
-    
+
+}
+
+#ValorTotal{
+    height: 700px;
 }
