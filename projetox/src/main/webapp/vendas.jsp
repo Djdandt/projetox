@@ -29,7 +29,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="carrinho.jsp" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="carrinho.jsp" method="post"  id="form_carrinho">
 
                     <center>
                         <div class="register-block">
