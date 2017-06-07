@@ -61,7 +61,7 @@ create table Funcionario (
     idCliente INT NOT NULL,
     idProduto INT NOT NULL,
     nomeProduto VARCHAR(50) NOT NULL,
-    nomeClient VARCHAR(50) NOT NULL,
+    nomeCliente VARCHAR(50) NOT NULL,
     quantidade VARCHAR(50) NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valor DOUBLE NOT NULL,

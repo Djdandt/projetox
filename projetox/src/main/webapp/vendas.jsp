@@ -129,7 +129,7 @@
                                     <td>${carrinho.nomeCliente}</td>
                                     <td>${carrinho.nomeProduto}</td>
                                     <td>${carrinho.quantidade}</td>
-                                    <td>${carrinho.valor}</td>
+                                    <td id="carrinho">${carrinho.valor}</td>
                                 </tr>
                             </c:forEach>                                                           
                         </table>
