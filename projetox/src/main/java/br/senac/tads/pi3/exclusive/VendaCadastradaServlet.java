@@ -5,6 +5,7 @@
  */
 package br.senac.tads.pi3.exclusive;
 
+import br.senac.tads.pi3.models.Vendas;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ public class VendaCadastradaServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet VendaCadastrada</title>");            
+            out.println("<title>Servlet VendaCadastrada</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet VendaCadastrada at " + request.getContextPath() + "</h1>");
@@ -78,21 +79,22 @@ public class VendaCadastradaServlet extends HttpServlet {
             throws ServletException, IOException {
         
         HttpSession session = request.getSession();
-        
-        List<String> lista = new ArrayList();
-        if(lista == null){
+
+        List lista = new ArrayList();
+        if (lista == null) {
             lista = new ArrayList();
             session.setAttribute("carrinho", lista);
         }
-        
-        String nomeCliente = request.getParameter("nomeCliente");
-        String nomeProduto = request.getParameter("nomeProduto");
-        String quantidade = request.getParameter("quantidade");
-        lista.add(nomeCliente);
-        lista.add(nomeProduto);
-        lista.add(quantidade);
-        session.setAttribute("carrinho", lista);
-        
+
+            int idVenda = Integer.parseInt(request.getParameter("idVenda"));
+            String nomeCliente = request.getParameter("nomeCliente");
+            String nomeProduto = request.getParameter("nomeProduto");
+            String quantidade = request.getParameter("quantidade");
+            Double valor = Double.parseDouble(request.getParameter("valor"));
+            Vendas vendas = new Vendas(nomeCliente, nomeProduto, quantidade, valor);
+            lista.add(vendas);
+            session.setAttribute("carrinho", lista);
+
         RequestDispatcher dispatcher
                 = request.getRequestDispatcher("vendasCadastradas");
     }

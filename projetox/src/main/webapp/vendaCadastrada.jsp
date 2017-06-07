@@ -18,6 +18,7 @@
         </style>
     </head>
         <div class="success">
-            <h3><c:out value="${sessionScope.novoFuncionario.nome}"/><p><strong>Cadastrado com Sucesso!</strong></p></h3>
+            <h3><c:out value="${sessionScope.novoFuncionario.nome}"/><p><strong>Produto cadastrado no carrinho</strong></p></h3>
+            <a href="vendas">Adicionar mais produtos</a>
         </div>
 </html>

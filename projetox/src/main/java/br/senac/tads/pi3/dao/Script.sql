@@ -64,12 +64,12 @@ create table Funcionario (
     nomeClient VARCHAR(50) NOT NULL,
     quantidade VARCHAR(50) NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
-    valorFinal DOUBLE NOT NULL,
+    valor DOUBLE NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
     FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
     FOREIGN KEY (nomeProduto) REFERENCES Produto(nomeProduto),
     FOREIGN KEY (nomeCliente) REFERENCES Cliente(nomeCliente),
-    FOREIGN KEY (valorFinal) REFERENCES Produto(Valor)
+    FOREIGN KEY (valor) REFERENCES Produto(Valor)
 );
 
 create table Relatorio(

@@ -35,7 +35,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="vendaCadastrada" method="post"  id="form_vendas">
+                <form class="form-horizontal" action="vendaCadastrada.jsp" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -52,7 +52,7 @@
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="nomeCliente" class="form-control selectpicker">
+                                            <select  name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
                                                 <c:forEach items="${listaCliente}" var="cliente">
                                                     <option value="${cliente.nome}">${cliente.nome}</option>
@@ -67,10 +67,10 @@
                                     <div class="col-md-4 selectContainer">
                                         <div class="input-group">
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                            <select required name="nomeProduto" class="form-control selectpicker">
+                                            <select  name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
                                                 <c:forEach items="${listaProduto}" var="produto">
-                                                    <option value="${produto.nome}">${produto.nome}</option>
+                                                    <option value="${produto.id} + ${produto.valor}">${produto.nome}</option>
                                                 </c:forEach>
                                             </select>
                                         </div>
@@ -104,7 +104,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Adicionar" />
+                                <input type="submit" id="btnCadastro" id="adicionar" value="Adicionar" />
                             </div>
                         </div>
 
@@ -129,6 +129,7 @@
                                     <td>${carrinho.nomeCliente}</td>
                                     <td>${carrinho.nomeProduto}</td>
                                     <td>${carrinho.quantidade}</td>
+                                    <td>${carrinho.valor}</td>
                                 </tr>
                             </c:forEach>                                                           
                         </table>

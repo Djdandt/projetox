@@ -14,7 +14,9 @@ public class Vendas {
     private int idProduto;
     private String nomeProduto;
     private String nomeCliente;
-    private int quantidade;
+    private String quantidade;
+    private double valor;
+    private Date dataVenda;
 
     public String getNomeProduto() {
         return nomeProduto;
@@ -32,15 +34,13 @@ public class Vendas {
         this.nomeCliente = nomeCliente;
     }
 
-    public int getQuantidade() {
+    public String getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(int quantidade) {
+    public void setQuantidade(String quantidade) {
         this.quantidade = quantidade;
     }
-    private Date dataVenda;
-    private double valorFinal;
 
     public Vendas() {
     }
@@ -61,8 +61,8 @@ public class Vendas {
         this.dataVenda = dataVenda;
     }
 
-    public void setValorFinal(double valorFinal) {
-        this.valorFinal = valorFinal;
+    public void setValor(double valor) {
+        this.valor = valor;
     }
 
     public int getIdVenda() {
@@ -81,11 +81,11 @@ public class Vendas {
         return dataVenda;
     }
 
-    public double getValorFinal() {
-        return valorFinal;
+    public double getValor() {
+        return valor;
     }
 
-    public Vendas(int idVenda, int idCliente, int idProduto, String nomeProduto, String nomeCliente, int quantidade, Date dataVenda, double valorFinal) {
+    public Vendas(int idVenda, int idCliente, int idProduto, String nomeProduto, String nomeCliente, String quantidade, Date dataVenda, double valor) {
         this.idVenda = idVenda;
         this.idCliente = idCliente;
         this.idProduto = idProduto;
@@ -93,16 +93,23 @@ public class Vendas {
         this.nomeCliente = nomeCliente;
         this.quantidade = quantidade;
         this.dataVenda = dataVenda;
-        this.valorFinal = valorFinal;
+        this.valor = valor;
     }
 
-    public Vendas(int idCliente, int idProduto, String nomeProduto, String nomeCliente, int quantidade, Date dataVenda, double valorFinal) {
+    public Vendas(int idCliente, int idProduto, String nomeProduto, String nomeCliente, String quantidade, Date dataVenda, double valor) {
         this.idCliente = idCliente;
         this.idProduto = idProduto;
         this.nomeProduto = nomeProduto;
         this.nomeCliente = nomeCliente;
         this.quantidade = quantidade;
         this.dataVenda = dataVenda;
-        this.valorFinal = valorFinal;
+        this.valor = valor;
+    }
+    
+    public Vendas(String nomeProduto, String nomeCliente, String quantidade, double valor){
+        this.nomeProduto = nomeProduto;
+        this.nomeCliente = nomeCliente;
+        this.quantidade = quantidade;
+        this.valor = valor;
     }
 }

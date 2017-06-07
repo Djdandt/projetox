@@ -39,10 +39,10 @@ public class VendasDAO extends ConexaoBD {
                 int idProduto = resultados.getInt("idProduto");
                 String produto = resultados.getString("nomeProduto");
                 String cliente = resultados.getString("nomeCliente");
-                int quantidade = resultados.getInt("quantidade");
+                String quantidade = resultados.getString("quantidade");
                 Date venda = resultados.getDate("dataVenda");
-                double valorFinal = resultados.getDouble("valorFinal");
-                v = new Vendas(id, idCliente, idProduto, produto, cliente, quantidade, venda, valorFinal);
+                double valor = resultados.getDouble("valo");
+                v = new Vendas(id, idCliente, idProduto, produto, cliente, quantidade, venda, valor);
                 break;
             }
         } catch (SQLException ex) {
@@ -90,11 +90,11 @@ public class VendasDAO extends ConexaoBD {
                 int idProduto = resultados.getInt("idProduto");
                 String produto = resultados.getString("nomeProduto");
                 String cliente = resultados.getString("nomeCliente");
-                int quantidade = resultados.getInt("quantidade");
+                String quantidade = resultados.getString("quantidade");
                 Date venda = resultados.getDate("dataVenda");
-                double valorFinal = resultados.getDouble("valorFinal");
+                double valor = resultados.getDouble("valor");
                 
-                Vendas vendas = new Vendas(id, idCliente, idProduto, produto, cliente, quantidade, venda, valorFinal);
+                Vendas vendas = new Vendas(id, idCliente, idProduto, produto, cliente, quantidade, venda, valor);
                 lista.add(vendas);
             }
 
@@ -129,7 +129,7 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeProduto, nomeCliente, quantidade, valorFinal) "
+                + "(nomeProduto, nomeCliente, quantidade, valor) "
                 + "VALUES (?, ?, ?, ?)";
         try {
             conn = obterConexao();
@@ -137,9 +137,9 @@ public class VendasDAO extends ConexaoBD {
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, vendas.getNomeProduto());
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setInt(1, vendas.getQuantidade());
-            stmt.setDouble(2, vendas.getValorFinal());
+            stmt.setString(2, vendas.getNomeCliente());
+            stmt.setString(3, vendas.getQuantidade());
+            stmt.setDouble(4, vendas.getValor());
 
             stmt.executeUpdate();
 
@@ -197,7 +197,7 @@ public class VendasDAO extends ConexaoBD {
         Connection conn = null;
 
         String sql = "INSERT INTO Venda "
-                + "(nomeProduto, nomeCliente, quantidade, valorFinal) "
+                + "(nomeProduto, nomeCliente, quantidade, valor) "
                 + "VALUES (?, ?, ?, ?)";
         try {
             conn = obterConexao();
@@ -205,11 +205,10 @@ public class VendasDAO extends ConexaoBD {
             conn.setAutoCommit(false); // Permite usar transacoes para multiplos comandos no banco de dados
             stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, vendas.getNomeProduto());
-            stmt.setString(1, vendas.getNomeCliente());
-            stmt.setInt(1, vendas.getQuantidade());
-            stmt.setDouble(2, vendas.getValorFinal());
+            stmt.setString(2, vendas.getNomeCliente());
+            stmt.setString(3, vendas.getQuantidade());
+            stmt.setDouble(4, vendas.getValor());
             stmt.executeUpdate();
-            //System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
             Logger.getLogger(VendasDAO.class.getName()).log(Level.SEVERE, null, ex);
