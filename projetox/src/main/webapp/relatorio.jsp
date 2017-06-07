@@ -146,9 +146,8 @@
                 <table class="table" border="3">
                     <tr>
                         <th>ID</th>
-                        <th>NOME</th>
+                        <th>NOME CLIENTE</th>
                         <th>PRODUTO</th>
-                        <th>DATA</th>
                         <th>QUANTIDADE</th>
                         <th>VALOR</th>
                     </tr>
@@ -156,13 +155,13 @@
                     <c:forEach items="${relatoriovendas}" var="rel">
                         <tr>
                             <td>${rel.id}</td>
-                            <td>${rel.nome}</td>
+                            <td>${rel.cliente}</td>
                             <td>${rel.produto}</td>
-                            <td>${rel.venda}</td>
                             <td>${rel.quantidade}</td>
                             <td>${rel.valorFinal}</td>
                         </tr>
-                    </c:forEach>                                                           
+                    </c:forEach>
+                        
                 </table>                                      
             </c:if>
         </form>

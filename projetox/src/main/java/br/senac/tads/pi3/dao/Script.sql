@@ -60,10 +60,15 @@ create table Funcionario (
     idVenda INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
     idCliente INT NOT NULL,
     idProduto INT NOT NULL,
+    nomeProduto VARCHAR(50) NOT NULL,
+    nomeClient VARCHAR(50) NOT NULL,
+    quantidade VARCHAR(50) NOT NULL,
     dataVenda TIMESTAMP NOT NULL,
     valorFinal DOUBLE NOT NULL,
     FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente),
     FOREIGN KEY (idProduto) REFERENCES Produto(idProduto),
+    FOREIGN KEY (nomeProduto) REFERENCES Produto(nomeProduto),
+    FOREIGN KEY (nomeCliente) REFERENCES Cliente(nomeCliente),
     FOREIGN KEY (valorFinal) REFERENCES Produto(Valor)
 );
 

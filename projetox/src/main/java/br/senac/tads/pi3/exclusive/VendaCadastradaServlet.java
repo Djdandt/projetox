@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpSession;
  * @author danik
  */
 @WebServlet(name = "VendaCadastrada", urlPatterns = {"/VendaCadastrada"})
-public class VendaCadastrada extends HttpServlet {
+public class VendaCadastradaServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,7 +82,7 @@ public class VendaCadastrada extends HttpServlet {
         List<String> lista = new ArrayList();
         if(lista == null){
             lista = new ArrayList();
-            session.setAttribute("itensVendidos", lista);
+            session.setAttribute("carrinho", lista);
         }
         
         String nomeCliente = request.getParameter("nomeCliente");
@@ -91,6 +92,9 @@ public class VendaCadastrada extends HttpServlet {
         lista.add(nomeProduto);
         lista.add(quantidade);
         session.setAttribute("carrinho", lista);
+        
+        RequestDispatcher dispatcher
+                = request.getRequestDispatcher("vendasCadastradas");
     }
 
     /**

@@ -54,9 +54,9 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeCliente" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o cliente</option>
-                                                    <c:forEach items="${listaCliente}" var="cliente">
-                                                        <c:out value="${cliente.nome}" />
-                                                    </c:forEach>
+                                                <c:forEach items="${listaCliente}" var="cliente">
+                                                    <option value="${cliente.nome}">${cliente.nome}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -69,9 +69,9 @@
                                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
                                             <select required name="nomeProduto" class="form-control selectpicker">
                                                 <option value="" disabled selected>Selecione o produto</option>
-                                                    <c:forEach items="${listaProduto}" var="produto">
-                                                        <c:out value="${produto.produto}" />
-                                                    </c:forEach>
+                                                <c:forEach items="${listaProduto}" var="produto">
+                                                    <option value="${produto.nome}">${produto.nome}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -87,7 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group"> 
                                     <label class="col-md-4 control-label">Valor do produto</label>
                                     <div class="col-md-4 selectContainer">
@@ -115,6 +115,25 @@
                             </div>
                         </div>
 
+
+                        <table class="table" border="3">
+                            <tr>
+                                <th>NOME CLIENTE</th>
+                                <th>NOME PRODUTO</th>
+                                <th>QUANTIDADE</th>
+                                <th>VALOR</th>
+                            </tr>
+
+                            <c:forEach items="${carrinhos}" var="carrinho">
+                                <tr>
+                                    <td>${carrinho.nomeCliente}</td>
+                                    <td>${carrinho.nomeProduto}</td>
+                                    <td>${carrinho.quantidade}</td>
+                                </tr>
+                            </c:forEach>                                                           
+                        </table>
+                                        
+                                        
                     </center>
                 </form>
             </div>
