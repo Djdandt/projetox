@@ -104,37 +104,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" id="adicionar" value="Adicionar" />
+                                <input type="submit" id="btnCadastro" id="adicionar" value="Adicionar ao carrinho" />
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label class="col-md-4 control-label"></label>
-                            <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
-                            </div>
-                        </div>
-
-
-                        <table class="table" border="3">
-                            <tr>
-                                <th>NOME CLIENTE</th>
-                                <th>NOME PRODUTO</th>
-                                <th>QUANTIDADE</th>
-                                <th>VALOR</th>
-                            </tr>
-
-                            <c:forEach items="${carrinhos}" var="carrinho">
-                                <tr>
-                                    <td>${carrinho.nomeCliente}</td>
-                                    <td>${carrinho.nomeProduto}</td>
-                                    <td>${carrinho.quantidade}</td>
-                                    <td id="carrinho">${carrinho.valor}</td>
-                                </tr>
-                            </c:forEach>                                                           
-                        </table>
-                                        
-                                        
                     </center>
                 </form>
             </div>
