@@ -1,3 +1,9 @@
+<%-- 
+    Document   : vendas
+    Created on : 13/05/2017, 12:13:46
+    Author     : danilo.kwatanabe
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -29,7 +35,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <form class="form-horizontal" action="carrinho.jsp" method="post"  id="form_carrinho">
+                <form class="form-horizontal" action="vendaCadastrada" method="post"  id="form_vendas">
 
                     <center>
                         <div class="register-block">
@@ -39,72 +45,73 @@
 
                             <table>
 
-                        </div>
+                                <!-- Text input-->
 
-                        <div class="form-group"> 
-                            <label class="col-md-4 control-label">Nome do Produto</label>
-                            <div class="col-md-4 selectContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                    <select required name="nomeProduto" class="form-control selectpicker">
-                                        <option value="" disabled selected>Selecione o produto</option>
-                                        <c:forEach items="${listaProduto}" var="produto">
-                                            <option value="${produto.nome}">${produto.nome}</option>
-                                        </c:forEach>
-                                    </select>
+                                <div class="form-group"> 
+                                    <label class="col-md-4 control-label">Nome do cliente</label>
+                                    <div class="col-md-4 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <select required name="nomeCliente" class="form-control selectpicker">
+                                                <option value="" disabled selected>Selecione o cliente</option>
+                                                    <c:forEach items="${listaCliente}" var="cliente">
+                                                        <c:out value="${cliente.nome}" />
+                                                    </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group"> 
-                            <label class="col-md-4 control-label">Nome do cliente</label>
-                            <div class="col-md-4 selectContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                                    <select required name="nomeCliente" class="form-control selectpicker">
-                                        <option value="" disabled selected>Selecione o cliente</option>
-                                        <c:forEach items="${listaCliente}" var="cliente">
-                                            <option value="${cliente.nome}">${cliente.nome}</option>
-                                        </c:forEach>
-                                    </select>
+                                <div class="form-group"> 
+                                    <label class="col-md-4 control-label">Nome do Produto</label>
+                                    <div class="col-md-4 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <select required name="nomeProduto" class="form-control selectpicker">
+                                                <option value="" disabled selected>Selecione o produto</option>
+                                                    <c:forEach items="${listaProduto}" var="produto">
+                                                        <c:out value="${produto.produto}" />
+                                                    </c:forEach>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <!-- Text input-->
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Quantidade</label>  
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
-                                    <input name="quantidade" placeholder="Quantidade" class="form-control"  type="number" required>
+                                <!-- Text input-->
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Quantidade</label>  
+                                    <div class="col-md-4 inputGroupContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-sort"></i></span>
+                                            <input name="quantidade" placeholder="Quantidade" class="form-control"  type="text" required>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label" >Valor final</label> 
-                            <div class="col-md-4 inputGroupContainer">
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
-                                        <c:forEach items="${listaVendas}" var="venda">
-                                            <c:out value="${vendas.valorFinal}" />
-                                        </c:forEach>
+                                
+                                <div class="form-group"> 
+                                    <label class="col-md-4 control-label">Valor do produto</label>
+                                    <div class="col-md-4 selectContainer">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                                            <input type="text" name="valor" value="<c:out value="${venda.valor}" />" readonly="readonly">
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <!-- Text input-->
 
-                        </table>
+                            </table>
                         </div>
-                        <!-- Success message -->
-                        <!--<div class="alert alert-success" role="alert" id="success_message">Sucesso <i class="glyphicon glyphicon-thumbs-up"></i> Cadastro Realizado com Sucesso !!.</div>-->
 
-                        <!-- Button -->
                         <div class="form-group">
                             <label class="col-md-4 control-label"></label>
                             <div class="col-md-4">
-                                <input type="submit" id="btnCadastro" value="Carrinho" />
+                                <input type="submit" id="btnCadastro" value="Adicionar" />
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
+                            <div class="col-md-4">
+                                <input type="submit" id="btnCadastro" value="Realizar Venda" />
                             </div>
                         </div>
 
