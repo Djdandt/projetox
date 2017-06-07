@@ -38,12 +38,16 @@
             <tr>
                 <td>VALOR TOTAL</td>
             </tr>
-            
+
             <tr>
                 <td>Valor total</td>
             </tr>
-            
+
         </table>
+
+        <form class="form-horizontal" action="menu" method="post"  id="form_vendas">
+            <input type="submit" id="btnCadastro" id="adicionar" value="Terminar venda" />
+        </form>
 
     </body>
 </html>
